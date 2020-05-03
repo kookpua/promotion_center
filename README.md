@@ -1,7 +1,7 @@
 
 ## 促销服务
 促销服务维护着所有促销信息,核心业务为:
-- 促销基础信息
+- 促销基础信息的维护
 - 设置促销规则
 - 设置参与促销的商品
 
@@ -16,8 +16,7 @@
 - Entity Framework Core
 - SQL Server
 - Autofac
-- Eventbus
-- Polly
+- Serilog
 - Swagger
 - Swashbuckle(Swagger API文档)(可选)
 - Dapper（可选）
@@ -26,10 +25,10 @@
 - Docker（可选）
 
 ## 实体建模
+- 还未开始
 
-- 待续
 ## 数据库结构
-- 待续
+- 还未开始
 
 
 
