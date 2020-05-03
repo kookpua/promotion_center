@@ -1,29 +1,41 @@
 
-# 促销服务
+## 促销服务
 促销服务维护着所有促销信息,核心业务为:
 - 促销基础信息
 - 设置促销规则
 - 设置参与促销的商品
 
-# 架构模式
+## 架构模式
 ![avatar](/img/促销中心架构图.png)
 
-# 基本框架搭建
+本微服务采用简单的数据驱动的CRUD微服务架构，来执行产品信息的创建、读取、更新和删除（CRUD）操作。这种类型的服务在单个 ASP.NET Core Web API 项目中即可实现所有功能，该项目包括数据模型类、业务逻辑类及其数据访问类。
+
+## 核心技术选型：
 - Net Core3.1
-- Autofac
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
 - Swagger
-- SqlServer
-- Dapper
-- Redis
-- Docker
-- 单元测试
+- Autofac
+- Eventbus
+- Polly
+- Dapper（可选）
+- Redis（可选）
+- Swashbuckle(Swagger API文档)(可选)
+- UnitTest（可选）
+- Docker（可选）
 
-# 开发模式 
-- DDD
-- RestFul
+## 实体建模
+
+- 待续
+## 数据库结构
+- 待续
 
 
-## 买一送一
+
+
+##  API接口
+### 买一送一接口
 - 新增
 - 修改
 - 删除
@@ -31,7 +43,7 @@
 - 上下架
 - 设置活动商品 productid
 
-## 满额送
+### 满额送接口
 - 新增
 - 修改
 - 删除
@@ -40,7 +52,7 @@
 - 设置活动商品
 - 设置满额送规则
 
-## 商品
+### 额外的商品查询接口
 - 根据单个商品查询参与活动信息(商品详情)
 - 根据多个商品查询参与活动信息(购物车/下单)
 
