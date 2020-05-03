@@ -15,13 +15,13 @@
 - ASP.NET Core Web API
 - Entity Framework Core
 - SQL Server
-- Swagger
 - Autofac
 - Eventbus
 - Polly
+- Swagger
+- Swashbuckle(Swagger API文档)(可选)
 - Dapper（可选）
 - Redis（可选）
-- Swashbuckle(Swagger API文档)(可选)
 - UnitTest（可选）
 - Docker（可选）
 
@@ -39,17 +39,19 @@
 - 新增
 - 修改
 - 删除
+- 查询 By Id
 - 查询
 - 上下架
-- 设置活动商品 productid
+- 设置活动商品 productids
 
 ### 满额送接口
 - 新增
 - 修改
 - 删除
+- 查询 By Id
 - 查询
 - 上下架
-- 设置活动商品
+- 设置活动商品 productids
 - 设置满额送规则
 
 ### 额外的商品查询接口
