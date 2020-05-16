@@ -20,6 +20,7 @@
 - Swagger
 - Docker(Linux X86&**ARM**)
 - Swashbuckle(Swagger API文档)(可选)
+- Docker Kubernetes（可选）
 - Dapper（可选）
 - Redis（可选）
 - UnitTest（可选）
