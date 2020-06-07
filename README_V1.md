@@ -32,29 +32,25 @@ Promotion(活动基础表)
 字段 | 类型 | 说明
 --- | --- | --- |
 Id | int|活动id,自增id
-Title | nvarchar(100) not null|活动标题
-**_Description_** | **_nvarchar(max)_**|**_活动说明_**
-PromotionTypeId | int not null|活动类型,详见PromotionType
-CreatedOnUtc|datetime not null|活动创建时间
-CreatedCustomerId|id not null|活动创建人
-UpdatedOnUtc|datetime not null|活动更新时间,默认为创建时间
-UpdatedCustomerId|id not null|活动更新人,默认为创建人
-StartDate | datetime not null|活动生效时间
-EndDate | datetime not null|活动结束时间
+Title | nvarchar(100) notnull|活动标题
+Description | nvarchar(max)|活动详情
+PromotionTypeId | int notnull|活动类型,详见PromotionType
+CreatedOnUtc|datetime notnull|活动创建时间
+CreatedCustomerId|id notnull|活动创建人
+UpdatedOnUtc|datetime notnull|活动更新时间,默认为创建时间
+UpdatedCustomerId|id notnull|活动更新人,默认为创建人
+StartDate | datetime notnull|活动生效时间
+EndDate | datetime notnull|活动结束时间
 PromotionStateId|int not null|活动状态,详见PromotionState
 Deleted | bit NOT NULL|活动是否删除
-**_PromotionProductTypeId_** | **_int not null_**|**_活动商品类型,详见PromotionProductType_**
-
 
 
 PromotionProduct(活动商品)
 字段 | 类型 | 说明
 --- | --- | --- |
 Id | int|自增id
-PromotionId | int not null|活id
-ProductId | int not null|商品id
-**~~_DiscountTypeId_~~**| **~~_int not null_~~** |**~~_折扣类型,详见DiscountType_~~**
-**~~_DiscountAmount_~~** | **~~_[decimal](18, 4) null_~~**|**~~_折抵或折减的值_~~**
+PromotionId | int notnull|活id
+ProductId | int notnull|商品id
 Price | [decimal](18, 4) null|活动价
 StockQuantity | int null|活动库存
 Deleted | bit NOT NULL|活动商品是否删除
@@ -91,36 +87,6 @@ id|state
 3|已结束
 4|已到期
 
-
-**~~_DiscountType(折减类型-枚举)_~~**
->感觉这里使用不合适，应该另一个维度的，之后的版本再考虑
-
-字段 | 类型 | 
---- | --- | 
-Id | int|
-Type | nvarchar(100)|
-
-eg:
-id|type
----|---|
-0|None无
-1|Discount折抵--DiscountAmount值为10代表1折
-2|CashDiscount折减--DiscountAmount值为10代表折减10块钱
-
-**_PromotionProductType(活动商品类型-枚举)_**
-> 多个商品/一个商品/全馆
-
-字段 | 类型 | 
---- | --- | 
-Id | int|
-Type | nvarchar(100)|
-
-eg:
-id|type
----|---|
-1|可以选多个商品
-2|可以选一个商品
-3|可以全部商品
 
 
 ##  API接口
