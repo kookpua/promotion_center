@@ -10,8 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Promotion.Data;
 
-namespace PromotionCenter
+namespace Promotion.API
 {
     public class Startup
     {
@@ -26,8 +27,8 @@ namespace PromotionCenter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<PromotionDbContext>(item => item.UseSqlServer(Configuration.
-                GetConnectionString("promotion")));
+            services.AddDbContext<PromotionContext>(item => item.UseSqlServer(Configuration.
+                GetConnectionString("promotionStr")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

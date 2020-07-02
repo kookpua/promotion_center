@@ -1,3 +1,8 @@
-/src/PromotionCenter/PromotionCenter/bin
-/src/PromotionCenter/PromotionCenter/obj
 /src/PromotionCenter/.vs
+/src/PromotionCenter/Promotion.API/bin
+/src/PromotionCenter/Promotion.API/obj
+/src/PromotionCenter/Promotion.Data/bin
+/src/PromotionCenter/Promotion.Data/obj
+/src/PromotionCenter/Promotion.Data/Migrations
+/src/PromotionCenter/Promotion.Domin/bin
+/src/PromotionCenter/Promotion.Domin/obj

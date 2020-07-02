@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PromotionCenter.Enum
+namespace Promotion.Domin.Enum
 {
-    public enum PromotionType
+    public enum PromotionProductType
     {
-        LimitDiscount = 1
+        Many=1,
+        One=2,
+        All=3
     }
 }

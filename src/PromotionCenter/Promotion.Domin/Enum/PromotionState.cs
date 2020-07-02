@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PromotionCenter.Enum
+namespace Promotion.Domin.Enum
 {
     public enum PromotionState
     {
