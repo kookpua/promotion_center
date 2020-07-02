@@ -1,8 +1,8 @@
-/src/PromotionCenter/.vs
-/src/PromotionCenter/Promotion.API/bin
-/src/PromotionCenter/Promotion.API/obj
-/src/PromotionCenter/Promotion.Data/bin
-/src/PromotionCenter/Promotion.Data/obj
-/src/PromotionCenter/Promotion.Data/Migrations
-/src/PromotionCenter/Promotion.Domin/bin
-/src/PromotionCenter/Promotion.Domin/obj
+/src/Servers/PromotionCenter/.vs
+/src/Servers/PromotionCenter/Promotion.API/bin
+/src/Servers/PromotionCenter/Promotion.API/obj
+/src/Servers/PromotionCenter/Promotion.Data/bin
+/src/Servers/PromotionCenter/Promotion.Data/obj
+/src/Servers/PromotionCenter/Promotion.Data/Migrations
+/src/Servers/PromotionCenter/Promotion.Domin/bin
+/src/Servers/PromotionCenter/Promotion.Domin/obj
