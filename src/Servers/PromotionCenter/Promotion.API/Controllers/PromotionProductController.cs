@@ -13,14 +13,14 @@ namespace Promotion.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PromotionController : ControllerBase
+    public class PromotionProductController : ControllerBase
     {
       
 
         private readonly ILogger<PromotionController> _logger;
         private readonly IPromotionService _promotionService;
 
-        public PromotionController(
+        public PromotionProductController(
             ILogger<PromotionController> logger,
             IPromotionService promotionService)
         {
@@ -29,12 +29,12 @@ namespace Promotion.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Promotions> Get()
+        public IEnumerable<PromotionProduct> Get()
         {
             _logger.LogInformation("Hello, Serilog!");
             _logger.LogInformation("你好, 西安!");
 
-            return _promotionService.GetAllPromotions();
+            return new List<PromotionProduct>();
         }
     }
 }
