@@ -10,6 +10,7 @@ namespace Promotion.Data
 {
     public class PromotionContext:DbContext
     {
+        #region  code first
         /*
          * 一、code first
          * 数据迁移，创建和更新功能：
@@ -23,74 +24,84 @@ namespace Promotion.Data
         二、现成的数据库生成Code
         。。。。。
          */
+        #endregion
+
+
         public PromotionContext(DbContextOptions options) : base(options)
         {
         }
 
+        public  DbSet<Promotions> Promotions { get; set; }
+        public DbSet<PromotionProduct> PromotionProducts { get; set; }
+
+        #region 控制台运行的时候可以监控sql
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseLoggerFactory(ConsoleLoggerFactory);
         //}
 
-        public  DbSet<Promotions> Promotions { get; set; }
-        public DbSet<PromotionProduct> PromotionProducts { get; set; }
 
-        //public static readonly ILoggerFactory ConsoleLoggerFactory = 
-        //    LoggerFactory.Create(builder=> {
-        //        builder.AddFilter((category,level)=>
-        //        category==DbLoggerCategory.Database.Command.Name
-        //        && level==LogLevel.Information)
+        //public static readonly ILoggerFactory ConsoleLoggerFactory =
+        //    LoggerFactory.Create(builder =>
+        //    {
+        //        builder.AddFilter((category, level) =>
+        //        category == DbLoggerCategory.Database.Command.Name
+        //        && level == LogLevel.Information)
         //        .AddConsole();
-        //});
+        //    });
+        #endregion
     }
 }
-/*
- get-help entityframe
 
-                     _/\__
-               ---==/    \\
-         ___  ___   |.    \|\
-        | __|| __|  |  )   \\\
-        | _| | _|   \_/ |  //|\\
-        |___||_|       /   \\\/\\
+        #region  get-help entityframe
+        /*
+         get-help entityframe
 
-TOPIC
-    about_EntityFrameworkCore
+                             _/\__
+                       ---==/    \\
+                 ___  ___   |.    \|\
+                | __|| __|  |  )   \\\
+                | _| | _|   \_/ |  //|\\
+                |___||_|       /   \\\/\\
 
-SHORT DESCRIPTION
-    Provides information about the Entity Framework Core Package Manager Console Tools.
+        TOPIC
+            about_EntityFrameworkCore
 
-LONG DESCRIPTION
-    This topic describes the Entity Framework Core Package Manager Console Tools. See https://docs.efproject.net for
-    information on Entity Framework Core.
+        SHORT DESCRIPTION
+            Provides information about the Entity Framework Core Package Manager Console Tools.
 
-    The following Entity Framework Core commands are available.
+        LONG DESCRIPTION
+            This topic describes the Entity Framework Core Package Manager Console Tools. See https://docs.efproject.net for
+            information on Entity Framework Core.
 
-        Cmdlet                      Description
-        --------------------------  ---------------------------------------------------
-        Add-Migration               Adds a new migration.
+            The following Entity Framework Core commands are available.
 
-        Drop-Database               Drops the database.
+                Cmdlet                      Description
+                --------------------------  ---------------------------------------------------
+                Add-Migration               Adds a new migration.
 
-        Get-DbContext               Gets information about a DbContext type.
+                Drop-Database               Drops the database.
 
-        Remove-Migration            Removes the last migration.
+                Get-DbContext               Gets information about a DbContext type.
 
-        Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
+                Remove-Migration            Removes the last migration.
 
-        Script-DbContext            Generates a SQL script from the current DbContext. 
+                Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
 
-        Script-Migration            Generates a SQL script from migrations.
+                Script-DbContext            Generates a SQL script from the current DbContext. 
 
-        Update-Database             Updates the database to a specified migration.
+                Script-Migration            Generates a SQL script from migrations.
 
-SEE ALSO
-    Add-Migration
-    Drop-Database
-    Get-DbContext
-    Remove-Migration
-    Scaffold-DbContext
-    Script-DbContext
-    Script-Migration
-    Update-Database
- */
+                Update-Database             Updates the database to a specified migration.
+
+        SEE ALSO
+            Add-Migration
+            Drop-Database
+            Get-DbContext
+            Remove-Migration
+            Scaffold-DbContext
+            Script-DbContext
+            Script-Migration
+            Update-Database
+         */
+        #endregion
