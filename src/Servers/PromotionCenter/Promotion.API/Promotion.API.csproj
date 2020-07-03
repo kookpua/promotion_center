@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Promotion.Data\Promotion.Data.csproj" />
     <ProjectReference Include="..\Promotion.Domin\Promotion.Domin.csproj" />
+    <ProjectReference Include="..\Promotion.Service\Promotion.Services.csproj" />
   </ItemGroup>
 
 

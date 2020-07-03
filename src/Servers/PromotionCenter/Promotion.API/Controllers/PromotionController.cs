@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Promotion.Data;
 using Promotion.Domin;
+using Promotion.Services;
 
 namespace Promotion.API.Controllers
 {
@@ -16,19 +17,20 @@ namespace Promotion.API.Controllers
       
 
         private readonly ILogger<PromotionController> _logger;
-        private readonly PromotionContext _context;
+        private readonly IPromotionService _promotionService;
 
-        public PromotionController(ILogger<PromotionController> logger,PromotionContext context)
+
+        public PromotionController(ILogger<PromotionController> logger,
+            IPromotionService promotionService)
         {
             _logger = logger;
-            _context = context;
+            _promotionService = promotionService;
         }
 
         [HttpGet]
         public IEnumerable<Promotions> Get()
         {
-            var promotions = _context.Promotions.ToList();
-            return promotions;
+            return _promotionService.GetAllPromotions();
         }
     }
 }
