@@ -31,8 +31,7 @@ namespace Promotion.API
             services.AddDbContext<PromotionContext>(item => item.UseSqlServer(Configuration.
                 GetConnectionString("promotionStr")));
 
-            services = new ServiceCollection()
-                .AddScoped<IPromotionService, PromotionService>();
+            services.AddScoped<IPromotionService, PromotionService>();
 
         }
 
