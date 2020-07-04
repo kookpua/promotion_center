@@ -3,6 +3,7 @@ using Huatek.Torch.Promotion.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotion.Service
 {
@@ -13,9 +14,16 @@ namespace Huatek.Torch.Promotion.Service
         {
             _context = context;
         }
-        public List<Promotions> GetAllPromotions()
+        /// <summary>
+        /// 获取所有的促销活动
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Promotions>> GetAllAsync()
         {
-            return _context.Promotions.ToList();
+            return await Task.Run<List<Promotions>>(() =>
+            {
+                return _context.Promotions.ToList();
+            });
         }
     }
 }

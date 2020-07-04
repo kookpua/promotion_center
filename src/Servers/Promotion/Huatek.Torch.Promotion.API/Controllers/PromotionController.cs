@@ -24,12 +24,16 @@ namespace Promotion.API.Controllers
             _logger = logger;
             _promotionService = promotionService;
         }
-
+        /// <summary>
+        /// 获取全部活动
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Promotions> Get()
+        public async Task<IEnumerable<Promotions>> Get()
         {
-
-            return _promotionService.GetAllPromotions();
+            _logger.LogInformation("Hello, Serilog!");
+            _logger.LogInformation("你好, 西安!");
+            return await _promotionService.GetAllAsync();
         }
     }
 }

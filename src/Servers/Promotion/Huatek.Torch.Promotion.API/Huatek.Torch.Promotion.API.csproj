@@ -4,6 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\github\promotion_center\src\Servers\Promotion\Huatek.Torch.Promotion.API\Huatek.Torch.Promotion.API.xml</DocumentationFile>
+    <OutputPath>bin\Debug\netcoreapp3.1\</OutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
@@ -25,6 +31,7 @@
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.1.0" />
     <PackageReference Include="Serilog.Sinks.MssqlServer" Version="5.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.5.1" />
   </ItemGroup>
 
   <ItemGroup>

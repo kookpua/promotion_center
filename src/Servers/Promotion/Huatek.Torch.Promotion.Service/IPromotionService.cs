@@ -1,11 +1,12 @@
 ﻿using Huatek.Torch.Promotion.Domain.PromotionAggregate;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotion.Service
 {
     public interface IPromotionService
     {
-        List<Promotions> GetAllPromotions();
+        Task<List<Promotions>> GetAllAsync();
     }
 }

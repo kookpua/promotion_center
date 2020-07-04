@@ -66,7 +66,7 @@ namespace Promotion.API
                 {
                     webBuilder
                         .UseContentRoot(Directory.GetCurrentDirectory())
-                        .UseSerilog()
+                        .UseSerilog(dispose:true)
                         .UseStartup<Startup>();
                 });
     }

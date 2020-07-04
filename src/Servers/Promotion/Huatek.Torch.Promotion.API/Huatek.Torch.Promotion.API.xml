@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Huatek.Torch.Promotion.API</name>
+    </assembly>
+    <members>
+        <member name="M:Promotion.API.Controllers.PromotionController.Get">
+            <summary>
+            获取全部活动
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Promotion.API.Controllers.PromotionProductController.Get">
+            <summary>
+            获取全部活动商品
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Promotion.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            UseSerilog()在宿主机启动的时候配置serilog,与微软ILogger进行整合
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Promotion.API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            autofac
+            https://autofaccn.readthedocs.io/zh/latest/lifetime/index.html
+            https://autofaccn.readthedocs.io/zh/latest/lifetime/instance-scope.html
+            ConfigureContainer is where you can register things directly
+            with Autofac. This runs after ConfigureServices so the things
+            here will override registrations made in ConfigureServices.
+            Don't build the container; that gets done for you by the factory.
+            </summary>
+            <param name="builder"></param>
+        </member>
+    </members>
+</doc>
