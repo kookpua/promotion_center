@@ -23,7 +23,7 @@
 - □ Docker(Linux X86&**ARM**)
 - □ Docker Kubernetes（可选）
 - □ Dapper（可选）
-- □ MSSQL（可选）
+- □ MySQL（可选）
 - □ Redis（可选）
 
 ## 实体建模&数据库结构
