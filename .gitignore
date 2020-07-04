@@ -6,3 +6,5 @@
 bin
 obj
 /src/Servers/Promotion/Huatek.Torch.Promotion.Infrastructure/Migrations
+/README_V2.md
+/README_V1.md
