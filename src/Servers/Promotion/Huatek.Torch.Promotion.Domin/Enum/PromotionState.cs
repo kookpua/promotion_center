@@ -5,12 +5,27 @@ using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotion.Domain.Enum
 {
+    /// <summary>
+    /// 活动状态
+    /// </summary>
     public enum PromotionState
     {
-        Created=1,
+        /// <summary>
+        /// 已创建
+        /// </summary>
+        Created = 1,
+        /// <summary>
+        /// 已发布
+        /// </summary>
         Published = 2,
-        Over=3,
-        Expired=4
+        /// <summary>
+        /// 已结束
+        /// </summary>
+        Over = 3,
+        /// <summary>
+        /// 已到期
+        /// </summary>
+        Expired = 4
 
     }
 }

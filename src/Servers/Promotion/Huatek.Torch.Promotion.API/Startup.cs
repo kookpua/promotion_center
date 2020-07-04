@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace Promotion.API
+namespace Huatek.Torch.Promotion.API
 {
     public class Startup
     {

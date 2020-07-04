@@ -5,8 +5,19 @@ using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotion.Domain.Enum
 {
+    /// <summary>
+    /// 活动类型
+    /// </summary>
     public enum PromotionType
     {
-        LimitDiscount = 1
+        /// <summary>
+        /// 限时折扣
+        /// </summary>
+        LimitDiscount = 1,
+        /// <summary>
+        /// 新用户专享
+        /// </summary>
+        NewUser=2,
+
     }
 }

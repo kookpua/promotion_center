@@ -4,26 +4,44 @@
         <name>Huatek.Torch.Promotion.API</name>
     </assembly>
     <members>
-        <member name="M:Promotion.API.Controllers.PromotionController.Get">
+        <!-- Badly formed XML comment ignored for member "M:Promotion.API.Controllers.PromotionController.ItemsAsync(System.Int32,System.Int32,System.String)" -->
+        <member name="M:Promotion.API.Controllers.PromotionController.ItemByIdAsync(System.Int32)">
             <summary>
-            获取全部活动
+            根据id获取活动
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Promotion.API.Controllers.PromotionProductController.Get">
+        <!-- Badly formed XML comment ignored for member "M:Promotion.API.Controllers.PromotionController.ItemsByPromotionIdAsync(System.Nullable{System.Int32},System.Int32,System.Int32)" -->
+        <member name="M:Promotion.API.Controllers.PromotionController.UpdateProductAsync(Huatek.Torch.Promotion.Domain.PromotionAggregate.Promotions)">
             <summary>
-            获取全部活动商品
+            更新活动信息 api/v1/[controller]/items
             </summary>
+            <param name="promotionToUpdate"></param>
             <returns></returns>
         </member>
-        <member name="M:Promotion.API.Program.CreateHostBuilder(System.String[])">
+        <member name="M:Promotion.API.Controllers.PromotionController.CreateProductAsync(Huatek.Torch.Promotion.Domain.PromotionAggregate.Promotions)">
+            <summary>
+            创建活动 api/v1/[controller]/items
+            </summary>
+            <param name="promotion">活动信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Promotion.API.Controllers.PromotionController.DeletePromotionAsync(System.Int32)">
+            <summary>
+            删除活动 api/v1/[controller]/id
+            </summary>
+            <param name="id">活动id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Huatek.Torch.Promotion.API.Program.CreateHostBuilder(System.String[])">
             <summary>
             UseSerilog()在宿主机启动的时候配置serilog,与微软ILogger进行整合
             </summary>
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="M:Promotion.API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+        <member name="M:Huatek.Torch.Promotion.API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
             <summary>
             autofac
             https://autofaccn.readthedocs.io/zh/latest/lifetime/index.html

@@ -18,12 +18,12 @@
 - ☑ Serilog
 - ☑ Swagger & Swashbuckle(Swagger API文档)
 - ☑ SQL Server
-- □ UnitTest
+- ☑ XUnitTest
 - □ SQL Server(**主从**)
 - □ Docker(Linux X86&**ARM**)
+- □ MySQL（可选）
 - □ Docker Kubernetes（可选）
 - □ Dapper（可选）
-- □ MySQL（可选）
 - □ Redis（可选）
 
 ## 实体建模&数据库结构

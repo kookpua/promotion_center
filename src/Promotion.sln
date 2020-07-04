@@ -25,6 +25,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotion.Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotion.Service", "Servers\Promotion\Huatek.Torch.Promotion.Service\Huatek.Torch.Promotion.Service.csproj", "{BE28EAE9-3215-404C-902F-630D693CEEA8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{43E9824A-643B-47A3-A1FE-CC5A2054569A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceTest", "ServiceTest", "{4D76434E-71C8-4B2A-ABA5-915065E51482}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2AE0A4E1-9C28-4E80-8ACD-0E72CA8A2033}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotion.XUnitTest", "Servers\Promotion\test\Huatek.Torch.Promotion.XUnitTest\Huatek.Torch.Promotion.XUnitTest.csproj", "{A89A7534-F0C0-4B4A-A7B5-23A120E0529F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +71,10 @@ Global
 		{BE28EAE9-3215-404C-902F-630D693CEEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE28EAE9-3215-404C-902F-630D693CEEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE28EAE9-3215-404C-902F-630D693CEEA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A89A7534-F0C0-4B4A-A7B5-23A120E0529F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A89A7534-F0C0-4B4A-A7B5-23A120E0529F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A89A7534-F0C0-4B4A-A7B5-23A120E0529F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A89A7534-F0C0-4B4A-A7B5-23A120E0529F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +89,9 @@ Global
 		{CA9979C3-2993-4A89-A0FB-BEC9CD131CC2} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
 		{DAB9C24F-EDC2-481F-BA52-A93B8A0005C3} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
 		{BE28EAE9-3215-404C-902F-630D693CEEA8} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
+		{4D76434E-71C8-4B2A-ABA5-915065E51482} = {43E9824A-643B-47A3-A1FE-CC5A2054569A}
+		{2AE0A4E1-9C28-4E80-8ACD-0E72CA8A2033} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
+		{A89A7534-F0C0-4B4A-A7B5-23A120E0529F} = {2AE0A4E1-9C28-4E80-8ACD-0E72CA8A2033}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8C056DA-3EE2-421F-AFEB-244F4C5D817C}

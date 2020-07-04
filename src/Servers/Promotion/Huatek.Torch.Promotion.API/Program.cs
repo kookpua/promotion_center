@@ -8,7 +8,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer.Sinks.MSSqlServer.Options;
 
-namespace Promotion.API
+namespace Huatek.Torch.Promotion.API
 {
     public class Program
     {
