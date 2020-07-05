@@ -20,8 +20,22 @@ namespace Huatek.Torch.Promotions.API
 
             var config = builder.Build();
 
+            #region   Serilog与微软ILogger进行整合
 
-            //Serilog与微软ILogger进行整合
+            #region Install-Package
+            /*
+            Install-Package Serilog
+            Install-Package Serilog.AspNetCore
+            Install-Package Serilog.Settings.Configuration
+            Install-Package Serilog.Sinks.Console
+            Install-Package Serilog.Sinks.MssqlServer
+            Install-Package Serilog.Sinks.Email
+            Install-Package Serilog.Sinks.File
+            Install-Package Serilog.Sinks.RollingFile
+            Install-Package Serilog.Sinks.Elasticsearch
+            */
+            #endregion
+
             if (config["WhoSql"].Equals("MsSql"))
             {
                 Log.Logger = new LoggerConfiguration()
@@ -35,21 +49,10 @@ namespace Huatek.Torch.Promotions.API
             {
                 Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
-                .WriteTo.MySQL(config["MySql"], "logs",restrictedToMinimumLevel: LogEventLevel.Information)
+                .WriteTo.MySQL(config["MySql"], "logs", restrictedToMinimumLevel: LogEventLevel.Information)
                .CreateLogger();
             }
-            /*
-             Install-Package Serilog
-             Install-Package Serilog.AspNetCore
-             Install-Package Serilog.Settings.Configuration
-             Install-Package Serilog.Sinks.Console
-             Install-Package Serilog.Sinks.MssqlServer
-             Install-Package Serilog.Sinks.Email
-             Install-Package Serilog.Sinks.File
-             Install-Package Serilog.Sinks.RollingFile
-             Install-Package Serilog.Sinks.Elasticsearch
-             */
-            
+            #endregion
 
 
             #region Serilog demo output json str 已注释
