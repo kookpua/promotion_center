@@ -14,7 +14,6 @@ namespace Huatek.Torch.Promotions.API.Extensions
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<PromotionRepository>().As<IPromotionRepository>();
             builder.RegisterType<PromotionService>().As<IPromotionService>();
         }
     }

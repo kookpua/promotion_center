@@ -51,7 +51,7 @@ namespace Huatek.Torch.Promotions.API
 
             //services.AddMediatRServices();
             services.AddMySqlDomainContext(Configuration.GetValue<string>("MsSql"));
-            //services.AddRepositories();
+            services.AddRepositories();
             //services.AddEventBus(Configuration); 
             //services.AddServices();
 
