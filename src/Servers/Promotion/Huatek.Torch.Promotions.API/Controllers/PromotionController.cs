@@ -64,10 +64,10 @@ namespace Huatek.Torch.Promotions.API.Controllers
                 return Ok(items);
             }
 
-            var totalItems = await _promotionContext.Promotion
+            var totalItems = await _promotionContext.Promotions
                 .LongCountAsync();
 
-            var itemsOnPage = await _promotionContext.Promotion
+            var itemsOnPage = await _promotionContext.Promotions
                 .OrderBy(c => c.Id)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
@@ -92,7 +92,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
             var idsToSelect = numIds
                 .Select(id => id.Value);
 
-            var items = await _promotionContext.Promotion.Where(ci => idsToSelect.Contains(ci.Id)).ToListAsync();
+            var items = await _promotionContext.Promotions.Where(ci => idsToSelect.Contains(ci.Id)).ToListAsync();
 
 
             return items;
@@ -115,7 +115,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
                 return BadRequest();
             }
 
-            var item = await _promotionContext.Promotion.SingleOrDefaultAsync(ci => ci.Id == id);
+            var item = await _promotionContext.Promotions.SingleOrDefaultAsync(ci => ci.Id == id);
 
 
             if (item != null)

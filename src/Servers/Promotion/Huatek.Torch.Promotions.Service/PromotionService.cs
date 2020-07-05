@@ -26,7 +26,7 @@ namespace Huatek.Torch.Promotions.Service
         {
             return await Task.Run<List<Promotion>>(() =>
             {
-                return _dbContext.Promotion.ToList();
+                return _dbContext.Promotions.ToList();
             });
         }
       

@@ -18,7 +18,7 @@ namespace Huatek.Torch.Promotions.Infrastructure
 
         }
 
-        public DbSet<Promotion> Promotion { get; set; }
+        public DbSet<Promotion> Promotions { get; set; }
         public DbSet<PromotionProduct> PromotionProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,9 +28,6 @@ namespace Huatek.Torch.Promotions.Infrastructure
             modelBuilder.ApplyConfiguration(new PromotionProductEntityTypeConfiguration());
 
             #endregion
-            modelBuilder.Entity<PromotionProduct>()
-           .HasOne(p => p.Promotion)
-           .WithMany(b => b.PromotionProducts);
 
 
 

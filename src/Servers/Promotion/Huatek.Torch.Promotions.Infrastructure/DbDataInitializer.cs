@@ -15,11 +15,11 @@ namespace Huatek.Torch.Promotions.Infrastructure
             //如果没有数据库，那么新建数据库
             //context.Database.EnsureCreated();
             //context.Database.Migrate();
-            if (context.Promotion.Any())
+            if (context.Promotions.Any())
             {
                 return;
             }
-            context.Promotion.AddRange(Initialize());
+            context.Promotions.AddRange(Initialize());
             if (context.SaveChanges() == 0)
             {
                 throw new Exception("写入默认数据失败。");
