@@ -64,7 +64,7 @@ namespace Huatek.Torch.Promotions.API
             //不初始化数据
             CreateHostBuilder(args).Build().Run();
 
-            #region 已使用数据迁移功能，暂不使用此处的初始化数据 已注释
+            #region 注释的代码
             //var host = CreateHostBuilder(args).Build();
 
             //using (var scope = host.Services.CreateScope())
@@ -73,7 +73,15 @@ namespace Huatek.Torch.Promotions.API
             //    try
             //    {
             //        var context = services.GetRequiredService<PromotionContext>();
+            //        //初始化数据库 
+            //        //已使用数据迁移功能，暂不使用此处的初始化数据 已注释
             //        DbDataInitializer.Initialize(context);
+
+            //        //删除和重建数据库
+            //        //context.Database.EnsureDeleted();
+            //        //context.Database.Migrate();
+
+
             //    }
             //    catch (Exception ex)
             //    {
