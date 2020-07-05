@@ -5,6 +5,7 @@
 /src/Servers/Promotion/.vs/PromotionCenter
 bin
 obj
-/src/Servers/Promotion/Huatek.Torch.Promotion.Infrastructure/Migrations
+/src/Servers/Promotion/Huatek.Torch.Promotion.Infrastructure
 /README_V2.md
 /README_V1.md
+Migrations

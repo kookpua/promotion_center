@@ -1,69 +1,45 @@
-using Huatek.Torch.Promotions.API.Controllers;
-using Huatek.Torch.Promotions.API.ViewModel;
-using Huatek.Torch.Promotions.Domain.Enum;
+﻿using Huatek.Torch.Promotions.Domain.Enum;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
-using Huatek.Torch.Promotions.Infrastructure;
-using Huatek.Torch.Promotions.Service;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Moq;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
+using System.Linq;
+using System.Text;
 
-namespace Huatek.Torch.Promotions.XUnitTest.Application
+namespace Huatek.Torch.Promotions.Infrastructure
 {
-    public class PromotionControllerTest
+    public class DbDataInitializer
     {
-
-        private readonly DbContextOptions<PromotionContext> _dbOptions;
-
-        public PromotionControllerTest()
+        public static void Initialize(PromotionContext context)
         {
-            _dbOptions = new DbContextOptionsBuilder<PromotionContext>()
-                .UseInMemoryDatabase(databaseName: "in-memory")
-                .Options;
-
-            using (var dbContext = new PromotionContext(_dbOptions))
+            //如果没有数据库，那么新建数据库
+            //context.Database.EnsureCreated();
+            //context.Database.Migrate();
+            if (context.Promotion.Any())
             {
-                dbContext.AddRange(GetFakeCatalog());
-                dbContext.SaveChanges();
+                return;
+            }
+            context.Promotion.AddRange(Initialize());
+            if (context.SaveChanges() == 0)
+            {
+                throw new Exception("写入默认数据失败。");
             }
         }
 
-        [Fact]
-        public async Task Get_PromotionProduct_Items_ByPromotionId_Success()
+
+        /// <summary>
+        /// 种子数据
+        /// </summary>
+        /// <returns></returns>
+        private static List<Promotion> Initialize()
         {
-            //Arrange
-            var pageSize = 2;
-            var pageIndex = 0;
-            var promotionId = 1;
 
-            var promotionContext = new PromotionContext(_dbOptions);
-
-            var promotionServiceMock = new Mock<IPromotionService>();
-            var loggerMock = new Mock<ILogger<PromotionController>>();
-            //Act
-            var promotionController = new PromotionController(promotionContext, loggerMock.Object,
-                promotionServiceMock.Object);
-            var actionResult = await promotionController.ItemsByPromotionIdAsync(promotionId,pageSize, pageIndex);
-
-            //Assert 
-            Assert.IsType<ActionResult<PaginatedItemsViewModel<PromotionProduct>>>(actionResult);
-            var page = Assert.IsAssignableFrom<PaginatedItemsViewModel<PromotionProduct>>(actionResult.Value);
-            Assert.Equal(pageIndex, page.PageIndex);
-            Assert.Equal(pageSize, page.PageSize);
-        }
-        private List<Promotion> GetFakeCatalog()
-        {
-            return new List<Promotion>()
+            var promotions = new List<Promotion>()
             {
                 new Promotion()
                 {
-                    Title = "�1",
-                    Description ="�1��˵��",
+                    Title = "活动1",
+                    Description ="活动1的说明",
                     PromotionTypeId =(int)PromotionType.NewUser,
                     CreatedOnUtc = DateTime.Now,
                     CreatedCustomerId =1,
@@ -75,35 +51,35 @@ namespace Huatek.Torch.Promotions.XUnitTest.Application
                     PromotionProducts=new List<PromotionProduct>(){
                         new PromotionProduct()
                         {
-                            PromotionId = 1,
+                            PromotionId=1,
                             ProductId =6,
                             Price =13,
                             StockQuantity = 111111,
                             Deleted =false
                         }, new PromotionProduct()
                         {
-                            PromotionId = 1,
+                            PromotionId=1,
                             ProductId =5,
                             Price =14,
                             StockQuantity = 11111,
                             Deleted =false
                         }, new PromotionProduct()
                         {
-                            PromotionId = 1,
+                            PromotionId=1,
                             ProductId =4,
                             Price =15,
                             StockQuantity = 1111,
                             Deleted =false
                         }, new PromotionProduct()
                         {
-                            PromotionId = 1,
+                            PromotionId=1,
                             ProductId =3,
                             Price =16,
                             StockQuantity = 111,
                             Deleted =false
                         }, new PromotionProduct()
                         {
-                            PromotionId = 1,
+                            PromotionId=1,
                             ProductId =2,
                             Price =17,
                             StockQuantity = 11,
@@ -112,8 +88,8 @@ namespace Huatek.Torch.Promotions.XUnitTest.Application
                     }
                 },new Promotion()
                 {
-                    Title = "�2",
-                    Description ="�2��˵��",
+                    Title = "活动2",
+                    Description ="活动2的说明",
                     PromotionTypeId =(int)PromotionType.LimitDiscount,
                     CreatedOnUtc = DateTime.Now,
                     CreatedCustomerId =1,
@@ -124,8 +100,8 @@ namespace Huatek.Torch.Promotions.XUnitTest.Application
                     PromotionProductTypeId = (int)PromotionProductType.OnlyOne
                 },new Promotion()
                 {
-                    Title = "�3",
-                    Description ="�3��˵��",
+                    Title = "活动3",
+                    Description ="活动3的说明",
                     PromotionTypeId =(int)PromotionType.LimitDiscount,
                     CreatedOnUtc = DateTime.Now,
                     CreatedCustomerId =1,
@@ -137,6 +113,8 @@ namespace Huatek.Torch.Promotions.XUnitTest.Application
                 }
 
             };
+
+            return promotions;
         }
     }
 }

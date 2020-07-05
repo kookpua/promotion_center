@@ -1,9 +1,12 @@
 ﻿using DotNetCore.CAP;
 using Huatek.Torch.Infrastructure.Core;
+using Huatek.Torch.Promotions.Domain.Enum;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
 using Huatek.Torch.Promotions.Infrastructure.EntityConfigurations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace Huatek.Torch.Promotions.Infrastructure
 {
@@ -23,9 +26,17 @@ namespace Huatek.Torch.Promotions.Infrastructure
             #region 注册领域模型与数据库的映射关系
             modelBuilder.ApplyConfiguration(new PromotionEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionProductEntityTypeConfiguration());
+
             #endregion
+            modelBuilder.Entity<PromotionProduct>()
+           .HasOne(p => p.Promotion)
+           .WithMany(b => b.PromotionProducts);
+
+
+
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }
 

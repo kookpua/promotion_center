@@ -19,7 +19,10 @@ namespace Huatek.Torch.Infrastructure.Core
 
         public virtual TEntity Add(TEntity entity)
         {
-            return DbContext.Add(entity).Entity;
+            DbContext.Add(entity);
+            DbContext.SaveChanges();
+            return entity;
+            //return DbContext.Add(entity).Entity;
         }
 
         public virtual Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
@@ -29,7 +32,10 @@ namespace Huatek.Torch.Infrastructure.Core
 
         public virtual TEntity Update(TEntity entity)
         {
-            return DbContext.Update(entity).Entity;
+            DbContext.Update(entity);
+            DbContext.SaveChanges();
+            return entity;
+            //return DbContext.Update(entity).Entity;
         }
 
         public virtual Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
@@ -40,6 +46,7 @@ namespace Huatek.Torch.Infrastructure.Core
         public virtual bool Remove(Entity entity)
         {
             DbContext.Remove(entity);
+            DbContext.SaveChanges();
             return true;
         }
 
@@ -64,17 +71,19 @@ namespace Huatek.Torch.Infrastructure.Core
                 return false;
             }
             DbContext.Remove(entity);
+            DbContext.SaveChanges();
             return true;
         }
 
         public virtual async Task<bool> DeleteAsync(TKey id, CancellationToken cancellationToken = default)
         {
-            var entity = await DbContext.FindAsync<TEntity>(id, cancellationToken);
+            var entity = await DbContext.FindAsync<TEntity>(new object[] { id }, cancellationToken);
             if (entity == null)
             {
                 return false;
             }
             DbContext.Remove(entity);
+            DbContext.SaveChanges();
             return true;
         }
 
@@ -85,7 +94,7 @@ namespace Huatek.Torch.Infrastructure.Core
 
         public virtual async Task<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default)
         {
-            return await DbContext.FindAsync<TEntity>(id, cancellationToken);
+            return await DbContext.FindAsync<TEntity>(new object[] { id }, cancellationToken);
         }
     }
 

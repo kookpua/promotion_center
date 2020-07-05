@@ -8,10 +8,9 @@ namespace Huatek.Torch.Promotions.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<PromotionProduct> builder)
         {
-            builder.HasKey(p => p.Id);
             builder.ToTable("PromotionProduct");
+            builder.HasKey(p => p.Id);
             builder.Property(p => p.Price).HasColumnType("decimal(18,4)");
-           
         }
     }
 }

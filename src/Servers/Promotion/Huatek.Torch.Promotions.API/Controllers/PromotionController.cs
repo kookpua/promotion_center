@@ -192,15 +192,17 @@ namespace Huatek.Torch.Promotions.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult> CreateProductAsync([FromBody] Promotion promotion)
         {
-
-            var result=await _promotionService.AddPromotionAsync(promotion);
-            if (result.Id ==0)
-            {
-                _logger.LogError("CreateProductAsync {@result}.", result);
-                return BadRequest("Create Fail");
-            }
-            _logger.LogInformation("CreateProductAsync Success {@result}.", result);
-            return CreatedAtAction(nameof(ItemByIdAsync), new { id = result.Id }, null);
+            //if (ModelState.IsValid)
+            //{
+                var result = await _promotionService.AddPromotionAsync(promotion);
+                if (result.Id == 0)
+                {
+                    _logger.LogError("CreateProductAsync {@result}.", result);
+                    return BadRequest("Create Fail");
+                }
+                _logger.LogInformation("CreateProductAsync Success {@result}.", result);
+                return CreatedAtAction(nameof(ItemByIdAsync), new { id = result.Id }, null);
+            //}
 
         }
 
