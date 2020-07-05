@@ -28,6 +28,9 @@ namespace Huatek.Torch.Promotions.Infrastructure
             modelBuilder.ApplyConfiguration(new PromotionProductEntityTypeConfiguration());
 
             #endregion
+            modelBuilder.Entity<PromotionProduct>()
+               .HasOne(p => p.Promotion)
+               .WithMany(b => b.PromotionProducts);
 
 
 
