@@ -171,7 +171,7 @@ namespace Huatek.Torch.Promotions.Infrastructure
 #region  code first
 /*
  * 一、code first
- * 数据迁移，创建和更新功能：
+ * 数据迁移，创建和更新功能（切换数据库需要重新生成）：
   1. 搜索程序包 或 package manage
   2. 生成Migrations命令：add-migration initial || add-migration changesomething
   3. 生成数据的脚本的命令（正式环境）：script-migration

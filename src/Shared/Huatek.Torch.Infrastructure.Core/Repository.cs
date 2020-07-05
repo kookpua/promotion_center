@@ -54,6 +54,11 @@ namespace Huatek.Torch.Infrastructure.Core
         {
             return Task.FromResult(Remove(entity));
         }
+
+        public async Task<bool> SaveAsync()
+        {
+            return await DbContext.SaveChangesAsync() > 0;
+        }
     }
 
 

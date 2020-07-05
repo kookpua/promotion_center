@@ -11,23 +11,17 @@ namespace Huatek.Torch.Promotions.Service
     public class PromotionService:IPromotionService
     {
         private readonly IPromotionRepository _promotionRepository;
-        private readonly PromotionContext _dbContext;
-        public PromotionService(IPromotionRepository promotionRepository,
-            PromotionContext dbContext)
+        public PromotionService(IPromotionRepository promotionRepository)
         {
             _promotionRepository = promotionRepository;
-            _dbContext = dbContext;
         }
         /// <summary>
         /// 获取所有的促销活动
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Promotion>> GetAllAsync()
+        public async Task<IEnumerable<Promotion>> GetPromotionsAsync()
         {
-            return await Task.Run<List<Promotion>>(() =>
-            {
-                return _dbContext.Promotions.ToList();
-            });
+            return await _promotionRepository.GetPromotionsAsync();
         }
       
         public async Task<Promotion> AddPromotionAsync(Promotion entity)

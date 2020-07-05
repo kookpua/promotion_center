@@ -7,7 +7,7 @@ namespace Huatek.Torch.Promotions.Service
 {
     public interface IPromotionService
     {
-        Task<List<Promotion>> GetAllAsync();
+        Task<IEnumerable<Promotion>> GetPromotionsAsync();
         Task<Promotion> AddPromotionAsync(Promotion entity);
 
         Task<bool> RemovePromotionAsync(Promotion entity);

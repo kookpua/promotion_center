@@ -20,6 +20,24 @@ namespace Huatek.Torch.Promotions.API
 
             var config = builder.Build();
 
+
+            //Serilog与微软ILogger进行整合
+            if (config["WhoSql"].Equals("MsSql"))
+            {
+                Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(config)
+                .WriteTo.MSSqlServer(config["MsSql"],
+                    sinkOptions: new SinkOptions { TableName = "logs", AutoCreateSqlTable = true },
+                    restrictedToMinimumLevel: LogEventLevel.Information)
+               .CreateLogger();
+            }
+            else
+            {
+                Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(config)
+                .WriteTo.MySQL(config["MySql"], "logs",restrictedToMinimumLevel: LogEventLevel.Information)
+               .CreateLogger();
+            }
             /*
              Install-Package Serilog
              Install-Package Serilog.AspNetCore
@@ -31,15 +49,7 @@ namespace Huatek.Torch.Promotions.API
              Install-Package Serilog.Sinks.RollingFile
              Install-Package Serilog.Sinks.Elasticsearch
              */
-            //Serilog与微软ILogger进行整合
-            Log.Logger = new LoggerConfiguration()
-                //.MinimumLevel.Information()
-                //.MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .ReadFrom.Configuration(config)
-                .WriteTo.MSSqlServer(config["MsSql"],
-                    sinkOptions: new SinkOptions { TableName = "logs", AutoCreateSqlTable = true },
-                    restrictedToMinimumLevel: LogEventLevel.Information)
-               .CreateLogger();
+            
 
 
             #region Serilog demo output json str 已注释

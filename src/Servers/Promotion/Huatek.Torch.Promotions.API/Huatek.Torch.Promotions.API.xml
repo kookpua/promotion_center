@@ -34,6 +34,22 @@
             <param name="id">活动id</param>
             <returns></returns>
         </member>
+        <member name="M:Huatek.Torch.Promotions.API.Extensions.ServiceCollectionExtensions.AddMSSqlDomainContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            sql server
+            </summary>
+            <param name="services"></param>
+            <param name="connectionString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Huatek.Torch.Promotions.API.Extensions.ServiceCollectionExtensions.AddMySqlDomainContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            mysql
+            </summary>
+            <param name="services"></param>
+            <param name="connectionString"></param>
+            <returns></returns>
+        </member>
         <member name="M:Huatek.Torch.Promotions.API.Program.CreateHostBuilder(System.String[])">
             <summary>
             UseSerilog()在宿主机启动的时候配置serilog,与微软ILogger进行整合

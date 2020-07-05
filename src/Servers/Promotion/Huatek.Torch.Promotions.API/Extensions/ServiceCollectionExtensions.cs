@@ -23,8 +23,13 @@ namespace Huatek.Torch.Promotions.API.Extensions
             return services.AddDbContext<PromotionContext>(optionsAction);
         }
 
-
-        public static IServiceCollection AddMySqlDomainContext(this IServiceCollection services, 
+        /// <summary>
+        /// sql server
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddMSSqlDomainContext(this IServiceCollection services, 
             string connectionString)
         {
             return services.AddDomainContext(builder =>
@@ -32,7 +37,20 @@ namespace Huatek.Torch.Promotions.API.Extensions
                 builder.UseSqlServer(connectionString);
             });
         }
-
+        /// <summary>
+         /// mysql
+         /// </summary>
+         /// <param name="services"></param>
+         /// <param name="connectionString"></param>
+         /// <returns></returns>
+        public static IServiceCollection AddMySqlDomainContext(this IServiceCollection services,
+           string connectionString)
+        {
+            return services.AddDomainContext(builder =>
+            {
+                builder.UseMySQL(connectionString);
+            });
+        }
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
