@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Autofac;
+using AutoMapper;
 using Huatek.Torch.Promotions.API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +53,8 @@ namespace Huatek.Torch.Promotions.API
             //services.AddMediatRServices();
             services.AddMySqlDomainContext(Configuration.GetValue<string>("MsSql"));
             services.AddRepositories();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddEventBus(Configuration); 
             //services.AddServices();
 

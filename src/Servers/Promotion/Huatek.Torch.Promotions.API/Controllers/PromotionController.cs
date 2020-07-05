@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 using Huatek.Torch.Promotions.API.ViewModel;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
 using Huatek.Torch.Promotions.Infrastructure;
@@ -20,16 +21,19 @@ namespace Huatek.Torch.Promotions.API.Controllers
     {
         private readonly ILogger<PromotionController> _logger;
         private readonly IPromotionService _promotionService;
+        private readonly IMapper _mapper;
         private readonly PromotionContext _promotionContext;
 
         public PromotionController(PromotionContext context,
             ILogger<PromotionController> logger,
-            IPromotionService promotionService
+            IPromotionService promotionService,
+            IMapper mapper
             )
         {
             _promotionContext = context ?? throw new ArgumentNullException(nameof(context));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _promotionService = promotionService;
+            _mapper = mapper;
         }
 
         /// <summary>

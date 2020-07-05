@@ -13,7 +13,8 @@
 
         public IEnumerable<TEntity> Data { get; private set; }
 
-        public PaginatedItemsViewModel(int pageIndex, int pageSize, long count, IEnumerable<TEntity> data)
+        public PaginatedItemsViewModel(int pageIndex, int pageSize, 
+            long count, IEnumerable<TEntity> data)
         {
             this.PageIndex = pageIndex;
             this.PageSize = pageSize;
