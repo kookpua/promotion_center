@@ -1,3 +1,4 @@
+using AutoMapper;
 using Huatek.Torch.Promotions.API.Controllers;
 using Huatek.Torch.Promotions.API.ViewModel;
 using Huatek.Torch.Promotions.Domain.Enum;
@@ -45,9 +46,10 @@ namespace Huatek.Torch.Promotions.XUnitTest.Application
 
             var promotionServiceMock = new Mock<IPromotionService>();
             var loggerMock = new Mock<ILogger<PromotionController>>();
+            var mapperMock = new Mock<IMapper>();
             //Act
             var promotionController = new PromotionController(promotionContext, loggerMock.Object,
-                promotionServiceMock.Object);
+                promotionServiceMock.Object, mapperMock.Object);
             var actionResult = await promotionController.ItemsByPromotionIdAsync(promotionId,pageSize, pageIndex);
 
             //Assert 

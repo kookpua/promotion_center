@@ -44,7 +44,11 @@ namespace Huatek.Torch.Domain
     public abstract class Entity<TKey> : Entity, IEntity<TKey>
     {
         int? _requestedHashCode;
-        public virtual TKey Id { get; protected set; }
+
+        //种子数据用
+        public virtual TKey Id { get; /*protected*/ set; }
+
+        //public virtual TKey Id { get; protected set; }
         public override object[] GetKeys()
         {
             return new object[] { Id };

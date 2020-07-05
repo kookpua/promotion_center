@@ -1,12 +1,8 @@
-using System;
 using System.IO;
 using Autofac.Extensions.DependencyInjection;
-using Huatek.Torch.Promotions.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer.Sinks.MSSqlServer.Options;
@@ -46,33 +42,36 @@ namespace Huatek.Torch.Promotions.API
                .CreateLogger();
 
 
-
+            #region Serilog demo output json str 已注释
             //var position = new { Latitude = 25, Longitude = 134 };
             //var elapsedMs = 34;
-
             //Log.Information("Processed {@Position} in {Elapsed:000} ms.", position, elapsedMs);
-            
-            
-            //CreateHostBuilder(args).Build().Run();
+            #endregion
 
-            var host = CreateHostBuilder(args).Build();
+            //不初始化数据
+            CreateHostBuilder(args).Build().Run();
 
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                try
-                {
-                    var context = services.GetRequiredService<PromotionContext>();
-                    DbDataInitializer.Initialize(context);
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the database.");
-                }
-            }
+            #region 已使用数据迁移功能，暂不使用此处的初始化数据 已注释
+            //var host = CreateHostBuilder(args).Build();
 
-            host.Run();
+            //using (var scope = host.Services.CreateScope())
+            //{
+            //    var services = scope.ServiceProvider;
+            //    try
+            //    {
+            //        var context = services.GetRequiredService<PromotionContext>();
+            //        DbDataInitializer.Initialize(context);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        var logger = services.GetRequiredService<ILogger<Program>>();
+            //        logger.LogError(ex, "An error occurred while seeding the database.");
+            //    }
+            //}
+
+            //host.Run();
+            #endregion
+
         }
 
         /// <summary>

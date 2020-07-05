@@ -26,17 +26,144 @@ namespace Huatek.Torch.Promotions.Infrastructure
             #region 注册领域模型与数据库的映射关系
             modelBuilder.ApplyConfiguration(new PromotionEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionProductEntityTypeConfiguration());
-
             #endregion
+
             modelBuilder.Entity<PromotionProduct>()
                .HasOne(p => p.Promotion)
                .WithMany(b => b.PromotionProducts);
 
-
+            #region 种子数据
+            //modelBuilder.Entity<Promotion>().HasData(new Promotion { 
+            //    Id=1,
+            //    Title = "活动1",
+            //    Description = "活动1的说明",
+            //    PromotionTypeId = (int)PromotionType.NewUser,
+            //    CreatedOnUtc = DateTime.Now,
+            //    CreatedCustomerId = 1,
+            //    StartDate = DateTime.Now,
+            //    EndDate = DateTime.Now.AddDays(100),
+            //    PromotionStateId = (int)PromotionState.Created,
+            //    Deleted = false,
+            //    PromotionProductTypeId = (int)PromotionProductType.SelectMany
+            //});
+            modelBuilder.Entity<Promotion>().HasData(InitializePromotions());
+            modelBuilder.Entity<PromotionProduct>().HasData(InitializePromotionProducts());
+            #endregion
 
             base.OnModelCreating(modelBuilder);
         }
+        /// <summary>
+        /// 种子数据
+        /// </summary>
+        /// <returns></returns>
+        private  List<Promotion> InitializePromotions()
+        {
 
+            var promotions = new List<Promotion>()
+            {
+                new Promotion()
+                {
+                    Id=1,
+                    Title = "活动1",
+                    Description ="活动1的说明",
+                    PromotionTypeId =(int)PromotionType.NewUser,
+                    CreatedOnUtc = DateTime.Now,
+                    CreatedCustomerId =1,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(100),
+                    PromotionStateId = (int)PromotionState.Created,
+                    Deleted =false,
+                    PromotionProductTypeId = (int)PromotionProductType.SelectMany                  
+                },new Promotion()
+                {
+                    Id=2,
+                    Title = "活动2",
+                    Description ="活动2的说明",
+                    PromotionTypeId =(int)PromotionType.LimitDiscount,
+                    CreatedOnUtc = DateTime.Now,
+                    CreatedCustomerId =1,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(100),
+                    PromotionStateId = (int)PromotionState.Created,
+                    Deleted =false,
+                    PromotionProductTypeId = (int)PromotionProductType.OnlyOne
+                },new Promotion()
+                {
+                    Id=3,
+                    Title = "活动3",
+                    Description ="活动3的说明",
+                    PromotionTypeId =(int)PromotionType.LimitDiscount,
+                    CreatedOnUtc = DateTime.Now,
+                    CreatedCustomerId =1,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(100),
+                    PromotionStateId = (int)PromotionState.Created,
+                    Deleted =false,
+                    PromotionProductTypeId = (int)PromotionProductType.All
+                }
+
+            };
+
+            return promotions;
+        }
+
+        /// <summary>
+        /// 种子数据
+        /// </summary>
+        /// <returns></returns>
+        private List<PromotionProduct> InitializePromotionProducts()
+        {
+
+            var promotionProducts = new List<PromotionProduct>()
+            {
+                    
+                new PromotionProduct()
+                {
+                    Id=1,
+                    PromotionId=1,
+                    ProductId =6,
+                    Price =13,
+                    StockQuantity = 111111,
+                    Deleted =false
+                }, new PromotionProduct()
+                {
+                    Id=2,
+                    PromotionId=1,
+                    ProductId =5,
+                    Price =14,
+                    StockQuantity = 11111,
+                    Deleted =false
+                }, new PromotionProduct()
+                {
+                    Id=3,
+                    PromotionId=1,
+                    ProductId =4,
+                    Price =15,
+                    StockQuantity = 1111,
+                    Deleted =false
+                }, new PromotionProduct()
+                {
+                    Id=4,
+                    PromotionId=1,
+                    ProductId =3,
+                    Price =16,
+                    StockQuantity = 111,
+                    Deleted =false
+                }, new PromotionProduct()
+                {
+                    Id=5,
+                    PromotionId=1,
+                    ProductId =2,
+                    Price =17,
+                    StockQuantity = 11,
+                    Deleted =false
+                }
+               
+
+            };
+
+            return promotionProducts;
+        }
     }
 }
 

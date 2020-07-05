@@ -66,6 +66,6 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
             get { return (PromotionProductType)PromotionProductTypeId; }
             set { PromotionProductTypeId = (int)value; }
         }
-        public virtual List<PromotionProduct> PromotionProducts { get; set; }
+        public virtual ICollection<PromotionProduct> PromotionProducts { get; set; }
     }
 }
