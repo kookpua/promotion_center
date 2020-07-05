@@ -72,7 +72,6 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
             get { return (PromotionProductType)PromotionProductTypeId; }
             set { PromotionProductTypeId = (int)value; }
         }
-        [JsonIgnore]
         public virtual ICollection<PromotionProduct> PromotionProducts { get; set; }
     }
 }
