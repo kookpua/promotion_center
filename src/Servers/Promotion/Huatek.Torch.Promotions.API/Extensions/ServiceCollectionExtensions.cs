@@ -7,6 +7,9 @@ using Huatek.Torch.Promotions.Service;
 using MediatR;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
 using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 namespace Huatek.Torch.Promotions.API.Extensions
 {
@@ -77,6 +80,20 @@ namespace Huatek.Torch.Promotions.API.Extensions
         {
             services.AddScoped<IPromotionService, PromotionService>();
             return services;
+        }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Promotion API", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
+            return services;
+
         }
     }
 

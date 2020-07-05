@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Reflection;
 using Autofac;
 using AutoMapper;
 using Huatek.Torch.Promotions.API.Extensions;
@@ -9,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace Huatek.Torch.Promotions.API
 {
@@ -35,22 +32,27 @@ namespace Huatek.Torch.Promotions.API
         // called by the runtime before the ConfigureContainer method, below.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             // Add services to the collection. Don't build or return
-             // any IServiceProvider or the ConfigureContainer method
-             // won't get called.
-            services.AddControllers().AddNewtonsoftJson(); //支持构造函数序列化
-
-
-            services.AddSwaggerGen(c =>
+            // any IServiceProvider or the ConfigureContainer method
+            // won't get called.
+            services.AddControllers(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Promotion API", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+                /*
+                 * https://stackoverflow.com/questions/59288259/asp-net-core-3-0-createdataction-returns-no-route-matches-the-supplied-values
+                 * https://github.com/dotnet/aspnetcore/issues/15316
+                */
+                options.SuppressAsyncSuffixInActionNames = false;
+            }) .AddNewtonsoftJson(); //支持构造函数序列化
+
 
             //services.AddMediatRServices();
+            services.AddRepositories();
+            services.AddSwagger();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddEventBus(Configuration); 
+            //services.AddServices();
+
             if (Configuration.GetValue<string>("WhoSql").Equals("MsSql"))
             {
                 services.AddMSSqlDomainContext(Configuration.GetValue<string>("MsSql"));
@@ -59,11 +61,6 @@ namespace Huatek.Torch.Promotions.API
             {
                 services.AddMySqlDomainContext(Configuration.GetValue<string>("MySql"));
             }
-            services.AddRepositories();
-
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            //services.AddEventBus(Configuration); 
-            //services.AddServices();
 
         }
 
@@ -94,7 +91,7 @@ namespace Huatek.Torch.Promotions.API
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage(); 
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
