@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Huatek.Torch.Promotions.Domin\Huatek.Torch.Promotions.Domain.csproj" />
+    <ProjectReference Include="..\Huatek.Torch.Promotions.Infrastructure\Huatek.Torch.Promotions.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
