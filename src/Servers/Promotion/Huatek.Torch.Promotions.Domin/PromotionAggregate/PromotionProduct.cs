@@ -1,6 +1,7 @@
 ﻿using Huatek.Torch.Domain;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         public decimal? Price { get; set; }
 
         public int? StockQuantity { get; set; }
+        [DefaultValue(false)]
         public bool Deleted { get; set; }
         public virtual Promotion Promotion { get; set; }
     }

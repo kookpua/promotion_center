@@ -2,9 +2,11 @@
 using Huatek.Torch.Promotions.Domain.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
@@ -16,17 +18,17 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
             PromotionProducts = new List<PromotionProduct>();
         }
 
-        //[Required]
-        //[MaxLength(50)]
         /// <summary>
         /// 活动名称
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string Title { get; set; }
 
-        //[Required, MaxLength(1000)]
         /// <summary>
         /// 活动描述
         /// </summary>
+        [Required, MaxLength(1000)]
         public string Description { get; set; }
         /// <summary>
         /// 限时折扣1,新用户专享2
@@ -34,6 +36,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         public int PromotionTypeId { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public PromotionType PromotionType
         {
             get { return (PromotionType)PromotionTypeId; }
@@ -50,22 +53,26 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         /// </summary>
         public int PromotionStateId { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public PromotionState PromotionState
         {
             get { return (PromotionState)PromotionStateId; }
             set { PromotionStateId = (int)value; }
         }
+        [DefaultValue(false)]
         public bool Deleted { get; set; }
         /// <summary>
         /// 可设置多个商品1,只能设置一个商品2,全部商品3
         /// </summary>
         public int PromotionProductTypeId { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public PromotionProductType PromotionProductType
         {
             get { return (PromotionProductType)PromotionProductTypeId; }
             set { PromotionProductTypeId = (int)value; }
         }
+        [JsonIgnore]
         public virtual ICollection<PromotionProduct> PromotionProducts { get; set; }
     }
 }

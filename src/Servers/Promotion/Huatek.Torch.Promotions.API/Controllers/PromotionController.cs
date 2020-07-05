@@ -40,6 +40,8 @@ namespace Huatek.Torch.Promotions.API.Controllers
         /// GET api/v1/[controller]/items[?pageSize=3&pageIndex=10]
         /// 获取活动信息
         /// </summary>
+        /// <remarks>
+        /// </remarks>
         /// <param name="pageSize">每页的数量</param>
         /// <param name="pageIndex">当前页数</param>
         /// <param name="ids">根据id list获取，逗号隔开</param>
