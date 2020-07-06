@@ -17,12 +17,12 @@
 - ☑ Autofac
 - ☑ Serilog
 - ☑ Swagger & Swashbuckle(Swagger API文档)
-- ☑ SQL Server
+- ☑ MSSQL
+- ☑ MySQL（可选）
 - ☑ XUnitTest
-- □ SQL Server(**主从**)
 - □ Docker(Linux X86&**ARM**)
-- □ MySQL（可选）
 - □ Docker Kubernetes（可选）
+- □ 数据库(**主从**)
 - □ Dapper（可选）
 - □ Redis（可选）
 
@@ -125,13 +125,15 @@ id|type
 
 
 ##  API接口
-- 新增
-- 修改
-- 删除
-- 查询 By Id
-- 查询 All
+- ☑查询 All
+- ☑修改
+- ☑新增
+- ☑查询 By Id
+- ☑查询某个活动下的所有活动商品
+- ☑删除活动
+- ☑设置活动商品(商品Id,活动价,活动库存)
 - 活动发布
-- 设置活动商品(商品Id,活动价,活动库存)
+- 删除商品
 
 
 

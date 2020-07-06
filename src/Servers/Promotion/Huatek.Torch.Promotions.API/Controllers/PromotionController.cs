@@ -37,8 +37,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
         }
 
         /// <summary>
-        /// GET api/v1/[controller]/items[?pageSize=3&pageIndex=10]
-        /// 获取活动信息
+        /// ☑ 获取活动信息
         /// </summary>
         /// <remarks>
         /// </remarks>
@@ -101,7 +100,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
         }
 
         /// <summary>
-        /// 根据id获取活动
+        /// ☑ 根据id获取活动
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -129,14 +128,14 @@ namespace Huatek.Torch.Promotions.API.Controllers
         }
 
         /// <summary>
-        /// 根据活动id获取活动商品api/v1/[controller]/items/product/[?pageSize=3&pageIndex=10]
+        /// ☑ 根据活动id获取活动商品a
         /// </summary>
         /// <param name="promotionId">活动id</param>
         /// <param name="pageSize"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("items/product/{promotionId:int?}")]
+        [Route("products/{promotionId:int?}")]
         [ProducesResponseType(typeof(PaginatedItemsViewModel<PromotionProduct>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<PaginatedItemsViewModel<PromotionProduct>>>
             ItemsByPromotionIdAsync(int? promotionId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
@@ -162,7 +161,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
 
 
         /// <summary>
-        /// 更新活动信息 api/v1/[controller]/items
+        /// ☑ 更新活动信息 api/v1/[controller]/items
         /// </summary>
         /// <param name="promotionToUpdate"></param>
         /// <returns></returns>
@@ -189,7 +188,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
 
 
         /// <summary>
-        /// 创建活动 api/v1/[controller]/items
+        /// ☑ 创建活动 此接口可以活动和活动商品一起插入到数据库
         /// </summary>
         /// <param name="promotion">活动信息</param>
         /// <returns></returns>
@@ -214,7 +213,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
 
 
         /// <summary>
-        /// 删除活动 api/v1/[controller]/id
+        /// ☑ 删除活动 api/v1/[controller]/id
         /// </summary>
         /// <param name="id">活动id</param>
         /// <returns></returns>
@@ -232,8 +231,41 @@ namespace Huatek.Torch.Promotions.API.Controllers
             else
             {
                 return NotFound();
-            }
-           
+            }           
         }
+
+
+        /// <summary>
+        /// ☑ 给活动添加商品
+        /// </summary>
+        /// <param name="promotionProducts">活动商品信息</param>
+        /// <returns></returns>
+        [Route("products")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult> CreateProductPromotionsAsync([FromBody] IEnumerable<PromotionProduct> promotionProducts)
+        {
+            if(promotionProducts==null || !promotionProducts.Any())
+            {
+                return BadRequest("Add Fail,Not Data !");
+            }
+            var promotionId = promotionProducts.FirstOrDefault().PromotionId;
+            var promotion = await _promotionService.GetPromotionByIdAsync(promotionId);
+            if(promotion == null)
+            {
+                return NotFound(new { Message = $"Item with promotionId {promotionId} not found." });
+               // return BadRequest("Add Fail,promotionId Is Invalid !");
+            }
+            foreach (var promotionProduct in promotionProducts)
+            {
+                promotion.PromotionProducts.Add(promotionProduct);
+            }
+            await _promotionService.UpdatePromotionAsync(promotion);
+            _logger.LogInformation("CreateProductPromotionsAsync Success {@promotion}.", promotion);
+            return CreatedAtAction(nameof(ItemByIdAsync), new { id = promotion.Id }, null);
+        }
+
+
     }
 }
