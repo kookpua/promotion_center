@@ -8,6 +8,7 @@ using Huatek.Torch.Promotions.API.ViewModel;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
 using Huatek.Torch.Promotions.Infrastructure;
 using Huatek.Torch.Promotions.Service;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -76,7 +77,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
 
 
 
-            var model = new PaginatedItemsViewModel<Promotion>(pageIndex, pageSize, 
+            var model = new PaginatedItemsViewModel<Promotion>(pageIndex, pageSize,
                 totalItems, itemsOnPage);
 
             return Ok(model);
@@ -199,40 +200,41 @@ namespace Huatek.Torch.Promotions.API.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                var result = await _promotionService.AddPromotionAsync(promotion);
-                if (result.Id == 0)
-                {
-                    _logger.LogError("CreateProductAsync {@result}.", result);
-                    return BadRequest("Create Fail");
-                }
-                _logger.LogInformation("CreateProductAsync Success {@result}.", result);
-                return CreatedAtAction(nameof(ItemByIdAsync), new { id = result.Id }, null);
+            var result = await _promotionService.AddPromotionAsync(promotion);
+            if (result.Id == 0)
+            {
+                _logger.LogError("CreateProductAsync {@result}.", result);
+                return BadRequest("Create Failed");
+            }
+            _logger.LogInformation("CreateProductAsync Success {@result}.", result);
+            return CreatedAtAction(nameof(ItemByIdAsync), new { id = result.Id }, null);
             //}
 
         }
 
 
         /// <summary>
-        /// ☑ 删除活动 api/v1/[controller]/id
+        /// 此方法是物理删除,删除活动请使用PATCH的方法,逻辑删除
         /// </summary>
         /// <param name="id">活动id</param>
         /// <returns></returns>
-        [Route("{id}")]
-        [HttpDelete]
-        [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult> DeletePromotionAsync(int id)
-        {
-            var result = await _promotionService.DeleteByIdAsync(id);
-            if (result)
-            {
-                return NoContent();
-            }
-            else
-            {
-                return NotFound();
-            }           
-        }
+        //[Route("{id}")]
+        //[HttpDelete]
+        //[Obsolete]
+        //[ProducesResponseType((int)HttpStatusCode.NoContent)]
+        //[ProducesResponseType((int)HttpStatusCode.NotFound)]
+        //public async Task<ActionResult> DeletePromotionAsync(int id)
+        //{
+        //    var result = await _promotionService.DeleteByIdAsync(id);
+        //    if (result)
+        //    {
+        //        return NoContent();
+        //    }
+        //    else
+        //    {
+        //        return NotFound();
+        //    }           
+        //}
 
 
         /// <summary>
@@ -240,22 +242,22 @@ namespace Huatek.Torch.Promotions.API.Controllers
         /// </summary>
         /// <param name="promotionProducts">活动商品信息</param>
         /// <returns></returns>
-        [Route("products")]
+        [Route("product")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult> CreateProductPromotionsAsync([FromBody] IEnumerable<PromotionProduct> promotionProducts)
         {
-            if(promotionProducts==null || !promotionProducts.Any())
+            if (promotionProducts == null || !promotionProducts.Any())
             {
-                return BadRequest("Add Fail,Not Data !");
+                return BadRequest("Add Failed,Not Data !");
             }
             var promotionId = promotionProducts.FirstOrDefault().PromotionId;
             var promotion = await _promotionService.GetPromotionByIdAsync(promotionId);
-            if(promotion == null)
+            if (promotion == null)
             {
                 return NotFound(new { Message = $"Item with promotionId {promotionId} not found." });
-               // return BadRequest("Add Fail,promotionId Is Invalid !");
+                // return BadRequest("Add Failed,promotionId Is Invalid !");
             }
             foreach (var promotionProduct in promotionProducts)
             {
@@ -266,6 +268,69 @@ namespace Huatek.Torch.Promotions.API.Controllers
             return CreatedAtAction(nameof(ItemByIdAsync), new { id = promotion.Id }, null);
         }
 
+        /// <summary>
+        /// ☑ 删除活动商品
+        /// </summary>
+        /// <param name="id">PromotionProductId</param>
+        /// <returns></returns>
+        [Route("product/{id}")]
+        [HttpDelete]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult> DeletePromotionProductAsync(int id)
+        {
+            var promotionProduct = await _promotionContext.FindAsync<PromotionProduct>(id);
+            if (promotionProduct == null)
+            {
+                return NotFound();
+            }
 
+            _promotionContext.Remove(promotionProduct);
+            _promotionContext.SaveChanges();
+            _logger.LogInformation("DeletePromotionProductAsync Success {@promotionProduct}.", promotionProduct);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// 修改删除状态 或 活动状态(已创建,已发布,已结束,已到期)
+        /// https://www.cnblogs.com/cgzl/p/9080960.html
+        /// </summary>
+        /// <remarks>
+        /// [ { "value":1, "operationType": 0, "path": "/Deleted", "op": "replace", "from": "" } ]
+        /// [ { "value":2, "operationType": 0, "path": "/PromotionStateId", "op": "replace", "from": "" } ]
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="promotionPatch"></param>
+        /// <returns></returns>
+        [Route("{id}")]
+        [HttpPatch]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<ActionResult> PatchPromotionAsync(int id, [FromBody] JsonPatchDocument<Promotion> promotionPatch)
+        {
+            var promotion = await _promotionService.GetPromotionByIdAsync(id);
+            if (promotion == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                promotionPatch.ApplyTo(promotion);
+                await _promotionService.UpdatePromotionAsync(promotion);
+
+                _logger.LogInformation("CreateProductPromotionsAsync Success {@promotion}.", promotion);
+            }
+            catch (Exception)
+            {
+                _logger.LogError("PatchPromotionAsync Failed {@promotionPatch}---{@promotion}", promotionPatch, promotion);
+                return StatusCode(500, "Paching Failed ");
+            }
+          
+
+            return CreatedAtAction(nameof(ItemByIdAsync), new { id = promotion.Id }, null);
+
+        }
+     
     }
 }
