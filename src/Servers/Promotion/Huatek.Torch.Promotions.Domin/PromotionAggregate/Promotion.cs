@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
 {
@@ -33,13 +34,16 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         public int PromotionTypeId { get; set; }
 
         [NotMapped]
-        [SwaggerExclude]
+        [JsonIgnore]
         public PromotionType PromotionType
         {
             get { return (PromotionType)PromotionTypeId; }
             set { PromotionTypeId = (int)value; }
         }
-        public DateTime CreatedOnUtc { get; set; }
+
+        [JsonIgnore]
+        public DateTime CreatedOnUtc { get; set; } = DateTime.Now;
+
         public int CreatedCustomerId { get; set; }
         //public DateTime UpdatedOnUtc { get; set; }
         //public int UpdatedCustomerId { get; set; }
@@ -50,7 +54,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         /// </summary>
         public int PromotionStateId { get; set; }
         [NotMapped]
-        [SwaggerExclude]
+        [JsonIgnore]
         public PromotionState PromotionState
         {
             get { return (PromotionState)PromotionStateId; }
@@ -63,7 +67,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         /// </summary>
         public int PromotionProductTypeId { get; set; }
         [NotMapped]
-        [SwaggerExclude]
+        [JsonIgnore]
         public PromotionProductType PromotionProductType
         {
             get { return (PromotionProductType)PromotionProductTypeId; }

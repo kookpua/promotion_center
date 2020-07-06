@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Huatek.Torch.Domain.Abstractions
 {
@@ -45,7 +46,7 @@ namespace Huatek.Torch.Domain.Abstractions
         int? _requestedHashCode;
 
         //种子数据用
-        [SwaggerExclude]
+        [JsonIgnore]
         public virtual TKey Id { get; /*protected*/ set; }
 
         //public virtual TKey Id { get; protected set; }
