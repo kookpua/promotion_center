@@ -1,9 +1,8 @@
-﻿using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Huatek.Torch.Domain
+namespace Huatek.Torch.Domain.Abstractions
 {
 
     public abstract class Entity : IEntity
@@ -46,6 +45,7 @@ namespace Huatek.Torch.Domain
         int? _requestedHashCode;
 
         //种子数据用
+        [SwaggerExclude]
         public virtual TKey Id { get; /*protected*/ set; }
 
         //public virtual TKey Id { get; protected set; }

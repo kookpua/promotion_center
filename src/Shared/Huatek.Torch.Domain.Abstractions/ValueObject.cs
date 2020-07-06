@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Huatek.Torch.Domain
+namespace Huatek.Torch.Domain.Abstractions
 {
     public abstract class ValueObject
     {

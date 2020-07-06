@@ -1,4 +1,4 @@
-﻿using Huatek.Torch.Domain;
+﻿using Huatek.Torch.Domain.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;

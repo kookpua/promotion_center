@@ -1,13 +1,10 @@
-﻿using Huatek.Torch.Domain;
+﻿using Huatek.Torch.Domain.Abstractions;
 using Huatek.Torch.Promotions.Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
 {
@@ -36,7 +33,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         public int PromotionTypeId { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
+        [SwaggerExclude]
         public PromotionType PromotionType
         {
             get { return (PromotionType)PromotionTypeId; }
@@ -53,7 +50,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         /// </summary>
         public int PromotionStateId { get; set; }
         [NotMapped]
-        [JsonIgnore]
+        [SwaggerExclude]
         public PromotionState PromotionState
         {
             get { return (PromotionState)PromotionStateId; }
@@ -66,7 +63,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         /// </summary>
         public int PromotionProductTypeId { get; set; }
         [NotMapped]
-        [JsonIgnore]
+        [SwaggerExclude]
         public PromotionProductType PromotionProductType
         {
             get { return (PromotionProductType)PromotionProductTypeId; }

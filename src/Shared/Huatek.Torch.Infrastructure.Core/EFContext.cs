@@ -1,5 +1,4 @@
 ﻿using DotNetCore.CAP;
-using Huatek.Torch.Domain;
 using Huatek.Torch.Infrastructure.Core.Extensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Huatek.Torch.Domain.Abstractions\Huatek.Torch.Domain.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Huatek.Torch.Infrastructure.Core\Huatek.Torch.Infrastructure.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,9 +7,10 @@ using Huatek.Torch.Promotions.Service;
 using MediatR;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
 using Microsoft.Extensions.Configuration;
-using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
+using Huatek.Torch.Domain.Abstractions;
+using Microsoft.OpenApi.Models;
 
 namespace Huatek.Torch.Promotions.API.Extensions
 {
@@ -90,6 +91,7 @@ namespace Huatek.Torch.Promotions.API.Extensions
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+                c.SchemaFilter<SwaggerExcludeFilter>();
             });
 
             return services;

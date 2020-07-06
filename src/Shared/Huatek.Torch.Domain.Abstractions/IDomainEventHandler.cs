@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-namespace Huatek.Torch.Domain
+namespace Huatek.Torch.Domain.Abstractions
 {
     public interface IDomainEventHandler<TDomainEvent> : INotificationHandler<TDomainEvent> 
         where TDomainEvent : IDomainEvent

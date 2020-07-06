@@ -1,4 +1,4 @@
-﻿using Huatek.Torch.Domain;
+﻿using Huatek.Torch.Domain.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;

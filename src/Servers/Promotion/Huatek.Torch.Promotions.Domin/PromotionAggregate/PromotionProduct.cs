@@ -1,10 +1,5 @@
-﻿using Huatek.Torch.Domain;
-using System;
-using System.Collections.Generic;
+﻿using Huatek.Torch.Domain.Abstractions;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
 {
