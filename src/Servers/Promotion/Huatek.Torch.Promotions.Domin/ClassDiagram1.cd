@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Huatek.Torch.Promotions.Domain.PromotionAggregate.Promotion">
+    <Position X="7.25" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAoAFAAAEABFAAgAAAAAAAAQAAAAEEAQAA=</HashCode>
+      <FileName>PromotionAggregate\Promotion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionProduct">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAACARAAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PromotionAggregate\PromotionProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="Huatek.Torch.Promotions.Domain.Enum.PromotionProductType">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Enum\PromotionProductType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Huatek.Torch.Promotions.Domain.Enum.PromotionState">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAIAAAAAAAAAAAQBAAAAAAAAAAA=</HashCode>
+      <FileName>Enum\PromotionState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Huatek.Torch.Promotions.Domain.Enum.PromotionType">
+    <Position X="2.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Enum\PromotionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
