@@ -1,7 +1,7 @@
 /促销中心v1.pdf
 /促销中心v2.pdf
 *.user
-/src/.vs
+.vs
 /src/Servers/Promotion/.vs/PromotionCenter
 bin
 obj
