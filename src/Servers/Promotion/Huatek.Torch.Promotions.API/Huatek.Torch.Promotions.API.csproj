@@ -40,5 +40,11 @@
     <ProjectReference Include="..\Huatek.Torch.Promotions.Service\Huatek.Torch.Promotions.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Huatek.Torch.Promotions.API.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
