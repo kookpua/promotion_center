@@ -46,3 +46,7 @@
 >Remove-Migration
  Drop-Database
 
+## Run 
+[linux-docker-run .net core](https://www.cnblogs.com/nickchou/p/11810938.html)
+[linux-docker-run .net core](https://github.com/kookpua/DockerDemo)
+[vagrant](https://vagrant.ninghao.net/synced-folder--basic.html)
