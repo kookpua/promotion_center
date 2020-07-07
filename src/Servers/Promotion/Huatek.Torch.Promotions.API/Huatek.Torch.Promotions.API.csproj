@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <!--<DocumentationFile>C:\github\promotion_center\src\Servers\Promotion\Huatek.Torch.Promotions.API\Huatek.Torch.Promotions.API.xml</DocumentationFile>-->
+    <DocumentationFile>C:\github\promotion_center\src\Servers\Promotion\Huatek.Torch.Promotions.API\Huatek.Torch.Promotions.API.xml</DocumentationFile>
     <OutputPath>bin\Debug\netcoreapp3.1\</OutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>

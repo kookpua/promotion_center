@@ -89,6 +89,13 @@
             <param name="id">PromotionProductId</param>
             <returns></returns>
         </member>
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionController.PromotionByProductIdAsync(System.Int32)">
+            <summary>
+            根据商品获取它所参加的活动
+            </summary>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Huatek.Torch.Promotions.API.Extensions.ServiceCollectionExtensions.AddMSSqlDomainContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
             <summary>
             sql server
