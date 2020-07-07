@@ -31,10 +31,10 @@
 
 ## 实体建模&数据库结构
 
-###实体建模
+### 实体建模
 ![avatar](/img/class.png)
 
-###数据库表结构
+### 数据库表结构
 
 ![avatar](/img/sql.png)
 Promotion(活动基础表)
