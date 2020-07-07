@@ -257,7 +257,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("products/{Id:int?}")]
+        [Route("product/items/{Id:int?}")]
         [ProducesResponseType(typeof(PaginatedItemsViewModel<PromotionProduct>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<PaginatedItemsViewModel<PromotionProduct>>>
             ItemsByPromotionIdAsync(int? promotionId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
@@ -319,7 +319,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("product/{id:int}")]
+        [Route("product/items/{id:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(PromotionProduct), (int)HttpStatusCode.OK)]
@@ -403,6 +403,39 @@ namespace Huatek.Torch.Promotions.API.Controllers
             _logger.LogInformation("DeletePromotionProductAsync Success {@promotionProduct}.", promotionProduct);
 
             return NoContent();
+        }
+
+        /// <summary>
+        /// 根据商品获取它所参加的活动
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("promotionproduct/items/{productId:int}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(IEnumerable<Promotion>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Promotion>>> PromotionByProductIdAsync(int productId)
+        {
+            if (productId <= 0)
+            {
+                return BadRequest();
+            }
+
+            var promotionIds = _promotionContext.PromotionProducts.Where(p => p.ProductId == productId).Select(p=>p.PromotionId);
+            if (promotionIds == null || !promotionIds.Any())
+            {
+                return NotFound();
+            }
+
+            var items = await GetItemsByIdsAsync(string.Join(",", promotionIds));
+
+            if (!items.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(items);
         }
     }
 }

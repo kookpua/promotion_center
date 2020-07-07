@@ -87,7 +87,23 @@ namespace Huatek.Torch.Promotions.API.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Promotion API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "Promotion API",
+                    Version = "v1",
+                    Description = "Huatek Torch Promotion  ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://github.com/kookpua/promotion_center"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Tim Gao",
+                        Email = string.Empty,
+                        Url = new Uri("https://github.com/kookpua/promotion_center"),
+                    },                    
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://github.com/kookpua/promotion_center/blob/master/LICENSE"),
+                    }
+                });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);

@@ -9,8 +9,7 @@
 ![avatar](/img/促销中心架构图.png)
 
 本微服务采用简单的数据驱动的CRUD微服务架构，来执行促销活动的创建、读取、更新和删除（CRUD）操作。这种类型的服务在单个 ASP.NET Core Web API 项目中即可实现所有功能，该项目包括数据模型类、业务逻辑类及其数据访问类。
-![avatar](/img/project1.png)
-![avatar](/img/project2.png)
+![avatar](/img/solution.png)
 
 
 ## 核心技术选型：
@@ -18,11 +17,12 @@
 - ☑ ASP.NET Core Web API
 - ☑ Entity Framework Core
 - ☑ Autofac
-- ☑ Serilog
-- ☑ Swagger & Swashbuckle(Swagger API文档)
 - ☑ MSSQL
 - ☑ MySQL（可选）
 - ☑ XUnitTest
+- ☑ Serilog
+- ☑ Swagger & Swashbuckle(Swagger API文档)
+- ☑ Rest架构风格API
 - □ Docker(Linux X86&**ARM**)
 - □ Docker Kubernetes（可选）
 - □ 数据库(**主从**)
@@ -144,6 +144,7 @@ id|type
 - ☑查询某个活动下的所有活动商品
 - ☑删除商品
 - ☑编辑活动商品(活动价,活动库存)
+- ☑根据商品查询参加的活动
 
 ![avatar](/img/swagger.png)
 

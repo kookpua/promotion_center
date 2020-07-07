@@ -49,6 +49,7 @@ namespace Huatek.Torch.Promotions.API
             //services.AddMediatRServices();
             services.AddRepositories();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSwagger();
             //services.AddEventBus(Configuration); 
             //services.AddServices();
 
@@ -61,7 +62,6 @@ namespace Huatek.Torch.Promotions.API
                 services.AddMySqlDomainContext(Configuration.GetValue<string>("MySql"));
             }
 
-            services.AddSwagger();
 
         }
 
