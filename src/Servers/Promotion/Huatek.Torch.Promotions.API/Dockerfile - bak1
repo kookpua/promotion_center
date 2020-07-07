@@ -1,0 +1,42 @@
+# https://hub.docker.com/_/microsoft-dotnet-core
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR  /source
+
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY Servers/Promotion/Huatek.Torch.Promotions.API/*.csproj ./Servers/Promotion/Huatek.Torch.Promotions.API/
+COPY Servers/Promotion/Huatek.Torch.Promotions.Domain/*.csproj ./Servers/Promotion/Huatek.Torch.Promotions.Domain/
+COPY Servers/Promotion/Huatek.Torch.Promotions.Infrastructure/*.csproj ./Servers/Promotion/Huatek.Torch.Promotions.Infrastructure/
+COPY Servers/Promotion/Huatek.Torch.Promotions.Service/*.csproj ./Servers/Promotion/Huatek.Torch.Promotions.Service/
+COPY Shared/Huatek.Torch.Core/*.csproj ./Shared/Huatek.Torch.Core/
+COPY Shared/Huatek.Torch.Domain.Abstractions/*.csproj ./Shared/Huatek.Torch.Domain.Abstractions/
+COPY Shared/Huatek.Torch.Extensions.Http/*.csproj ./Shared/Huatek.Torch.Extensions.Http/
+COPY Shared/Huatek.Torch.Infrastructure.Core/*.csproj ./Shared/Huatek.Torch.Infrastructure.Core/
+RUN dotnet restore
+
+
+# copy everything else and build app
+COPY Servers/Promotion/Huatek.Torch.Promotions.API/. ./Servers/Promotion/Huatek.Torch.Promotions.API/
+COPY Servers/Promotion/Huatek.Torch.Promotions.Domain/. ./Servers/Promotion/Huatek.Torch.Promotions.Domain/
+COPY Servers/Promotion/Huatek.Torch.Promotions.Infrastructure/. ./Servers/Promotion/Huatek.Torch.Promotions.Infrastructure/
+COPY Servers/Promotion/Huatek.Torch.Promotions.Service/. ./Servers/Promotion/Huatek.Torch.Promotions.Service/
+COPY Shared/Huatek.Torch.Core/. ./Shared/Huatek.Torch.Core/
+COPY Shared/Huatek.Torch.Domain.Abstractions/. ./Shared/Huatek.Torch.Domain.Abstractions/
+COPY Shared/Huatek.Torch.Extensions.Http/. ./Shared/Huatek.Torch.Extensions.Http/
+COPY Shared/Huatek.Torch.Infrastructure.Core/. ./Shared/Huatek.Torch.Infrastructure.Core/
+
+WORKDIR /source/aspnetapp
+RUN dotnet publish -c release -o /app --no-restore
+
+
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+
+WORKDIR /app
+COPY --from=build /app ./
+EXPOSE 8001
+COPY . .
+ENV ASPNETCORE_URLS http://+:8001
+ENTRYPOINT ["dotnet", "Huatek.Torch.Promotion.API.dll"]
