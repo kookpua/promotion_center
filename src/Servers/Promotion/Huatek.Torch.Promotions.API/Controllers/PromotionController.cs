@@ -24,6 +24,10 @@ namespace Huatek.Torch.Promotions.API.Controllers
         private readonly IPromotionService _promotionService;
         private readonly IMapper _mapper;
         private readonly PromotionContext _promotionContext;
+        private static readonly string[] Summaries = new[]
+      {
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
 
         public PromotionController(PromotionContext context,
             ILogger<PromotionController> logger,
@@ -35,6 +39,12 @@ namespace Huatek.Torch.Promotions.API.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _promotionService = promotionService;
             _mapper = mapper;
+        }
+
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return Summaries;
         }
 
         /// <summary>
@@ -257,7 +267,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("product/items/{Id:int?}")]
+        [Route("product/items/{promotionId:int?}")]
         [ProducesResponseType(typeof(PaginatedItemsViewModel<PromotionProduct>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<PaginatedItemsViewModel<PromotionProduct>>>
             ItemsByPromotionIdAsync(int? promotionId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
