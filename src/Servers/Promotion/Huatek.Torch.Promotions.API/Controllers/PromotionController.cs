@@ -158,7 +158,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
             }
             if (promotionToUpdate.StartDate >= promotionToUpdate.EndDate)
             {
-                _logger.LogError("UpdateProductAsync {@result}.", promotionToUpdate);
+                _logger.LogError("UpdateProductAsync {@promotionToUpdate}.", promotionToUpdate);
                 return BadRequest("结束时间不能小于开始时间");
             }
 
@@ -203,7 +203,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
             //{
             if (promotion.StartDate >= promotion.EndDate)
             {
-                _logger.LogError("CreateProductAsync {@result}.", promotion);
+                _logger.LogError("CreateProductAsync {@promotion}.", promotion);
                 return BadRequest("结束时间不能小于开始时间");
             }
             var result = await _promotionService.AddPromotionAsync(promotion);
