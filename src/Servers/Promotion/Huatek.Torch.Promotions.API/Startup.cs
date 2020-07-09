@@ -43,6 +43,9 @@ namespace Huatek.Torch.Promotions.API
                  * https://github.com/dotnet/aspnetcore/issues/15316
                 */
                 options.SuppressAsyncSuffixInActionNames = false;
+
+                options.Filters.Add<XcActionFilter>();
+
             }) .AddNewtonsoftJson(); //支持构造函数序列化
 
             services.AddApplicationInsightsTelemetry();

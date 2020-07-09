@@ -46,7 +46,7 @@ namespace Huatek.Torch.Domain.Abstractions
         int? _requestedHashCode;
 
         //种子数据用
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual TKey Id { get; /*protected*/ set; }
 
         //public virtual TKey Id { get; protected set; }

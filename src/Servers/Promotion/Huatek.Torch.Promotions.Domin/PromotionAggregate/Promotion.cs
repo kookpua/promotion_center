@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
 namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
@@ -19,18 +20,18 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         /// <summary>
         /// 活动名称
         /// </summary>
-        [Required]
-        [MaxLength(50)]
+        [StringLength(50, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 1)]
         public string Title { get; set; }
 
         /// <summary>
         /// 活动描述
         /// </summary>
-        [Required, MaxLength(1000)]
+        [StringLength(1000, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 1)]
         public string Description { get; set; }
         /// <summary>
-        /// 限时折扣1,新用户专享2
+        /// 活动类型：限时折扣1,新用户专享2
         /// </summary>
+        [Range(1, 2, ErrorMessage = "请输入正确的活动类型.")]
         public int PromotionTypeId { get; set; }
 
         [NotMapped]
@@ -43,15 +44,16 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
 
         [JsonIgnore]
         public DateTime CreatedOnUtc { get; set; } = DateTime.Now;
-
+        [Range(1,int.MaxValue,ErrorMessage = "用户ID不能为0")]
         public int CreatedCustomerId { get; set; }
-        //public DateTime UpdatedOnUtc { get; set; }
-        //public int UpdatedCustomerId { get; set; }
+        [DataType(DataType.DateTime, ErrorMessage = "请输入正确的时间")]
         public DateTime StartDate { get; set; }
+        [DataType(DataType.DateTime, ErrorMessage = "请输入正确的时间")]
         public DateTime EndDate { get; set; }
         /// <summary>
-        /// 新创建为1
+        /// 活动状态：1,2,3,4
         /// </summary>
+        [Range(1,4,ErrorMessage = "请输入正确的活动状态.")]
         public int PromotionStateId { get; set; }
         [NotMapped]
         [JsonIgnore]
@@ -63,8 +65,9 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         [DefaultValue(false)]
         public bool Deleted { get; set; }
         /// <summary>
-        /// 可设置多个商品1,只能设置一个商品2,全部商品3
+        /// 活动商品类型：可设置多个商品1,只能设置一个商品2,全部商品3
         /// </summary>
+        [Range(1, 3, ErrorMessage = "请输入正确的活动商品类型.")]
         public int PromotionProductTypeId { get; set; }
         [NotMapped]
         [JsonIgnore]
@@ -73,6 +76,8 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
             get { return (PromotionProductType)PromotionProductTypeId; }
             set { PromotionProductTypeId = (int)value; }
         }
+        [NotMapped]
+        //[JsonIgnore]
         public virtual ICollection<PromotionProduct> PromotionProducts { get; set; }
     }
 }
