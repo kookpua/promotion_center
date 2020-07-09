@@ -45,7 +45,7 @@ namespace Huatek.Torch.Promotions.API
                 options.SuppressAsyncSuffixInActionNames = false;
             }) .AddNewtonsoftJson(); //支持构造函数序列化
 
-
+            services.AddApplicationInsightsTelemetry();
             //services.AddMediatRServices();
             services.AddRepositories();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
