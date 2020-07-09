@@ -4,6 +4,12 @@
         <name>Huatek.Torch.Promotions.API</name>
     </assembly>
     <members>
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionController.Get">
+            <summary>
+            测试网站部署是否ok
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionController.ItemsAsync(System.Int32,System.Int32,System.String)">
             <summary>
             获取活动信息

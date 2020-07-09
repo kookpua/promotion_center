@@ -38,6 +38,17 @@ namespace Huatek.Torch.Promotions.API.Controllers
         }
 
         /// <summary>
+        /// 测试网站部署是否ok
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return new List<string>() { "ok" };
+        }
+
+
+        /// <summary>
         /// 获取活动信息
         /// </summary>
         /// <remarks>
