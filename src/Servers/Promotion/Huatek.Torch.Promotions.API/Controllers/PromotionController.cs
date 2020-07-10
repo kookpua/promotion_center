@@ -267,7 +267,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("product/items/{promotionId:int?}")]
+        [Route("products/items/{promotionId:int?}")]
         [ProducesResponseType(typeof(PaginatedItemsViewModel<PromotionProduct>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<PaginatedItemsViewModel<PromotionProduct>>>
             ItemsByPromotionIdAsync(int? promotionId, [FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
