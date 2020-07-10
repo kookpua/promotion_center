@@ -43,6 +43,9 @@ namespace Huatek.Torch.Promotions.API
                  * https://github.com/dotnet/aspnetcore/issues/15316
                 */
                 options.SuppressAsyncSuffixInActionNames = false;
+
+                options.Filters.Add<XcActionFilter>();
+
             }) .AddNewtonsoftJson(); //支持构造函数序列化
 
             services.AddApplicationInsightsTelemetry();
@@ -93,12 +96,12 @@ namespace Huatek.Torch.Promotions.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Promotion API V1");
-                });
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Promotion API V1");
+            });
 
             app.UseRouting();
 

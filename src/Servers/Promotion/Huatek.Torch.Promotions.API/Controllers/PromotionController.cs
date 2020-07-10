@@ -41,11 +41,17 @@ namespace Huatek.Torch.Promotions.API.Controllers
             _mapper = mapper;
         }
 
+
+        /// <summary>
+        /// 测试网站部署是否ok
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return Summaries;
+            return new List<string>() { "ok"} ;
         }
+
 
         /// <summary>
         /// 获取活动信息
@@ -151,15 +157,36 @@ namespace Huatek.Torch.Promotions.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult> UpdateProductAsync([FromBody] Promotion promotionToUpdate)
         {
+            if (promotionToUpdate.Id <= 0)
+            {
+                return NotFound(new { Message = $"Item with id {promotionToUpdate.Id} not found." });
+            }
+            if (promotionToUpdate.StartDate >= promotionToUpdate.EndDate)
+            {
+                _logger.LogError("UpdateProductAsync {@promotionToUpdate}.", promotionToUpdate);
+                return BadRequest("结束时间不能小于开始时间");
+            }
+
             var promotion = await _promotionService.GetPromotionByIdAsync(promotionToUpdate.Id);
             if (promotion == null)
             {
                 return NotFound(new { Message = $"Item with id {promotionToUpdate.Id} not found." });
             }
 
+            promotion.PromotionProductTypeId = promotionToUpdate.PromotionProductTypeId;
+            promotion.PromotionStateId = promotionToUpdate.PromotionStateId;
+            promotion.Title = promotionToUpdate.Title;
+            promotion.Description = promotionToUpdate.Description;
+            promotion.Deleted = promotionToUpdate.Deleted;
+            promotion.StartDate = promotionToUpdate.StartDate;
+            promotion.EndDate = promotionToUpdate.EndDate;
+            promotion.CreatedCustomerId = promotionToUpdate.CreatedCustomerId;
+            promotion.PromotionTypeId = promotionToUpdate.PromotionTypeId;
+            promotion.PromotionStateId = promotionToUpdate.PromotionStateId;
 
+            //my sql 好像不行了
             // Update current promotion
-            promotion = promotionToUpdate;
+            //promotion = promotionToUpdate;
             var result = await _promotionService.UpdatePromotionAsync(promotion);
 
 
@@ -179,6 +206,11 @@ namespace Huatek.Torch.Promotions.API.Controllers
         {
             //if (ModelState.IsValid)
             //{
+            if (promotion.StartDate >= promotion.EndDate)
+            {
+                _logger.LogError("CreateProductAsync {@promotion}.", promotion);
+                return BadRequest("结束时间不能小于开始时间");
+            }
             var result = await _promotionService.AddPromotionAsync(promotion);
             if (result.Id == 0)
             {

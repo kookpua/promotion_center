@@ -7,14 +7,19 @@ namespace Huatek.Torch.Promotions.Profiles
     {
         public PromotionProfile()
         {
-            CreateMap<Promotion, PromotionDto>().
-                ForMember(dest => dest.PromotionTitle,
-                opt => opt.MapFrom(src => src.Title));
-            
+            //CreateMap<Promotion, PromotionDto>().
+            //    ForMember(dest => dest.PromotionTitle,
+            //    opt => opt.MapFrom(src => src.Title));
+
             //use:
             //var promotiondto = _mapper.Map<IEnumerable<PromotionDto>>(itemsOnPage);
 
+            CreateMap<Promotion, PromotionDto>();
             CreateMap<PromotionProduct, PromotionProductDto>();
+
+
+            CreateMap<PromotionDto, Promotion>();
+            CreateMap<PromotionProductDto, PromotionProduct>();
         }
     }
 }

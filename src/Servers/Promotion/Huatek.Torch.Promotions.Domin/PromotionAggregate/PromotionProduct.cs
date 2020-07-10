@@ -1,5 +1,6 @@
 ﻿using Huatek.Torch.Domain.Abstractions;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -19,7 +20,7 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         [DefaultValue(false)]
         public bool Deleted { get; set; }
         [NotMapped]
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Promotion Promotion { get; set; }
     }
 }

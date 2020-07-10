@@ -4,6 +4,12 @@
         <name>Huatek.Torch.Promotions.API</name>
     </assembly>
     <members>
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionController.Get">
+            <summary>
+            测试网站部署是否ok
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionController.ItemsAsync(System.Int32,System.Int32,System.String)">
             <summary>
             获取活动信息
@@ -130,6 +136,46 @@
             Don't build the container; that gets done for you by the factory.
             </summary>
             <param name="builder"></param>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.Title">
+            <summary>
+            活动名称
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.Description">
+            <summary>
+            活动描述
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.PromotionTypeId">
+            <summary>
+            限时折扣1,新用户专享2
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.CreatedCustomerId">
+            <summary>
+            创建人ID
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.StartDate">
+            <summary>
+            活动开启时间
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.EndDate">
+            <summary>
+            活动结束时间
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.PromotionStateId">
+            <summary>
+            新创建为1
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.PromotionProductTypeId">
+            <summary>
+            可设置多个商品1,只能设置一个商品2,全部商品3
+            </summary>
         </member>
     </members>
 </doc>
