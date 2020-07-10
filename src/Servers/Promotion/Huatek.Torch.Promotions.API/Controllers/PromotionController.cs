@@ -24,10 +24,6 @@ namespace Huatek.Torch.Promotions.API.Controllers
         private readonly IPromotionService _promotionService;
         private readonly IMapper _mapper;
         private readonly PromotionContext _promotionContext;
-        private static readonly string[] Summaries = new[]
-      {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         public PromotionController(PromotionContext context,
             ILogger<PromotionController> logger,
@@ -173,6 +169,7 @@ namespace Huatek.Torch.Promotions.API.Controllers
                 return NotFound(new { Message = $"Item with id {promotionToUpdate.Id} not found." });
             }
 
+            //修改 不修改CreatedOnUtc
             promotion.PromotionProductTypeId = promotionToUpdate.PromotionProductTypeId;
             promotion.PromotionStateId = promotionToUpdate.PromotionStateId;
             promotion.Title = promotionToUpdate.Title;

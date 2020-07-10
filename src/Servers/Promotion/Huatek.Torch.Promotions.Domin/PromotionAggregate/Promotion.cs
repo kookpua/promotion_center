@@ -42,7 +42,6 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
             set { PromotionTypeId = (int)value; }
         }
 
-        [JsonIgnore]
         public DateTime CreatedOnUtc { get; set; } = DateTime.Now;
         [Range(1,int.MaxValue,ErrorMessage = "用户ID不能为0")]
         public int CreatedCustomerId { get; set; }
