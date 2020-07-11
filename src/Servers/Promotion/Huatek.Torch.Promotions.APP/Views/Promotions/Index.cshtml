@@ -3,7 +3,7 @@
 @model PromotionOptionViewModel;
 
 @{
-    ViewData["Title"] = "促销中心";
+    ViewData["Title"] = "促销中心dd";
 }
 
 <p>
@@ -36,28 +36,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.Title)
+                @Html.DisplayNameFor(model => model.Promotions[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.PromotionTypeId)
+                @Html.DisplayNameFor(model => model.Promotions[0].PromotionTypeId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.CreatedOnUtc)
+                @Html.DisplayNameFor(model => model.Promotions[0].CreatedOnUtc)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.StartDate)
+                @Html.DisplayNameFor(model => model.Promotions[0].StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.EndDate)
+                @Html.DisplayNameFor(model => model.Promotions[0].EndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.PromotionStateId)
+                @Html.DisplayNameFor(model => model.Promotions[0].PromotionStateId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.Deleted)
+                @Html.DisplayNameFor(model => model.Promotions[0].Deleted)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotion.PromotionProductTypeId)
+                @Html.DisplayNameFor(model => model.Promotions[0].PromotionProductTypeId)
             </th>
             <th>操作</th>
         </tr>

@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotions.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotions.Service", "Servers\Promotion\Huatek.Torch.Promotions.Service\Huatek.Torch.Promotions.Service.csproj", "{44EDB5CB-5201-48C9-BC6D-DB34E216C2C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huatek.Torch.Promotions.APP", "Servers\Promotion\Huatek.Torch.Promotions.APP\Huatek.Torch.Promotions.APP.csproj", "{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotions.APP", "Servers\Promotion\Huatek.Torch.Promotions.APP\Huatek.Torch.Promotions.APP.csproj", "{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

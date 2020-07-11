@@ -14,7 +14,6 @@ namespace Huatek.Torch.Promotions.APP.ViewModel
     {
         public PromotionOptionViewModel()
         {
-            Promotion = new Promotion();
             PromotionTypes = new List<SelectListItem>() ;
             PromotionProductTypes = new List<SelectListItem>();
             PromotionStates = new List<SelectListItem>();
@@ -25,7 +24,6 @@ namespace Huatek.Torch.Promotions.APP.ViewModel
         public List<SelectListItem> PromotionStates { get; set; }
         [Display(Name = "活动名称")]
         public string SearchString { get; set; }
-        public Promotion Promotion { get; private set; }
         [Display(Name = "活动类型")]
         public int PromotionTypeId { get; set; }
         [Display(Name = "商品类型")]
