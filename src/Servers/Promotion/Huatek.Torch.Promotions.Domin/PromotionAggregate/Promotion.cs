@@ -21,17 +21,20 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
         /// 活动名称
         /// </summary>
         [StringLength(50, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 1)]
+        [Display(Name = "活动名称")]
         public string Title { get; set; }
 
         /// <summary>
         /// 活动描述
         /// </summary>
         [StringLength(1000, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 1)]
+        [Display(Name = "活动描述")]
         public string Description { get; set; }
         /// <summary>
         /// 活动类型：限时折扣1,新用户专享2
         /// </summary>
         [Range(1, 2, ErrorMessage = "请输入正确的活动类型.")]
+        [Display(Name = "活动类型")]
         public int PromotionTypeId { get; set; }
 
         [NotMapped]
@@ -42,17 +45,22 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
             set { PromotionTypeId = (int)value; }
         }
 
+        [Display(Name = "创建时间")]
         public DateTime CreatedOnUtc { get; set; } = DateTime.Now;
         [Range(1,int.MaxValue,ErrorMessage = "用户ID不能为0")]
+        [Display(Name = "创建人ID")]
         public int CreatedCustomerId { get; set; }
         [DataType(DataType.DateTime, ErrorMessage = "请输入正确的时间")]
+        [Display(Name = "开始时间")]
         public DateTime StartDate { get; set; }
         [DataType(DataType.DateTime, ErrorMessage = "请输入正确的时间")]
+        [Display(Name = "结束时间")]
         public DateTime EndDate { get; set; }
         /// <summary>
         /// 活动状态：1,2,3,4
         /// </summary>
         [Range(1,4,ErrorMessage = "请输入正确的活动状态.")]
+        [Display(Name = "活动状态")]
         public int PromotionStateId { get; set; }
         [NotMapped]
         [JsonIgnore]
@@ -62,11 +70,13 @@ namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
             set { PromotionStateId = (int)value; }
         }
         [DefaultValue(false)]
+        [Display(Name = "删除")]
         public bool Deleted { get; set; }
         /// <summary>
         /// 活动商品类型：可设置多个商品1,只能设置一个商品2,全部商品3
         /// </summary>
         [Range(1, 3, ErrorMessage = "请输入正确的活动商品类型.")]
+        [Display(Name = "商品类型")]
         public int PromotionProductTypeId { get; set; }
         [NotMapped]
         [JsonIgnore]

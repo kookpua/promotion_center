@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotions.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotions.Service", "Servers\Promotion\Huatek.Torch.Promotions.Service\Huatek.Torch.Promotions.Service.csproj", "{44EDB5CB-5201-48C9-BC6D-DB34E216C2C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huatek.Torch.Promotions.APP", "Servers\Promotion\Huatek.Torch.Promotions.APP\Huatek.Torch.Promotions.APP.csproj", "{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{44EDB5CB-5201-48C9-BC6D-DB34E216C2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44EDB5CB-5201-48C9-BC6D-DB34E216C2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44EDB5CB-5201-48C9-BC6D-DB34E216C2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{5B3388BE-6920-4E71-9FC3-FCB0AC3167B5} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
 		{E5E428BD-1BF5-4DEA-9896-AE4D49CB346F} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
 		{44EDB5CB-5201-48C9-BC6D-DB34E216C2C6} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
+		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8C056DA-3EE2-421F-AFEB-244F4C5D817C}

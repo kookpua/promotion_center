@@ -1,0 +1,107 @@
+﻿@using Huatek.Torch.Promotions.APP.ViewModel;
+@using Huatek.Torch.Promotions.APP.Extensions;
+@model PromotionOptionViewModel;
+
+@{
+    ViewData["Title"] = "促销中心";
+}
+
+<p>
+    <a asp-action="Create">新增</a>
+</p>
+<p>
+    <form asp-controller="Promotions" asp-action="Index" method="get">
+        @Html.DisplayNameFor(model => model.PromotionTypeId):
+        <select asp-for="PromotionTypeId" asp-items="Model.PromotionTypes">
+            <option value="0">全部</option>
+        </select>
+        <br />
+        @Html.DisplayNameFor(model => model.PromotionStateId):
+        <select asp-for="PromotionStateId" asp-items="Model.PromotionStates">
+            <option value="0">全部</option>
+        </select>
+        <br />
+        @Html.DisplayNameFor(model => model.PromotionProductTypeId):
+        <select asp-for="PromotionProductTypeId" asp-items="Model.PromotionProductTypes">
+            <option value="0">全部</option>
+        </select>
+        <br />
+        @Html.DisplayNameFor(model => model.SearchString):
+        <input name="SearchString" placeholder="请输入名称关键字查询" value="@Model.SearchString" />
+        <br />
+        <input type="submit" value="查询" />
+    </form>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.PromotionTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.CreatedOnUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.PromotionStateId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.Deleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promotion.PromotionProductTypeId)
+            </th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Promotions)
+        {
+            <tr>
+                <td>
+                    <span title="@item.Title">@(item.Title.Length>4?item.Title.Substring(0,4)+"...": item.Title)</span>
+                </td>
+                <td>
+                    <span title="@item.PromotionType.GetDescription()">
+                        @(item.PromotionType.GetDescription().Length
+                        >4?item.PromotionType.GetDescription().Substring(0,4)+"...": item.PromotionType.GetDescription())
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @item.PromotionState.GetDescription()
+                </td>
+                <td>
+                    @(item.Deleted?"是":"否")
+                </td>
+                <td>
+                    @(item.PromotionProductType.GetDescription().Length
+                        >4?item.PromotionProductType.GetDescription().Substring(0,4)+"...":
+                        item.PromotionProductType.GetDescription())
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">编辑</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">查看</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
