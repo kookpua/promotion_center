@@ -4,13 +4,13 @@
         <name>Huatek.Torch.Promotions.APP</name>
     </assembly>
     <members>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.Get">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.Get">
             <summary>
             测试网站部署是否ok
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.ItemsAsync(System.Int32,System.Int32,System.String)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.ItemsAsync(System.Int32,System.Int32,System.String)">
             <summary>
             获取活动信息
             </summary>
@@ -21,28 +21,28 @@
             <param name="ids">根据id list获取，逗号隔开</param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.ItemByIdAsync(System.Int32)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.ItemByIdAsync(System.Int32)">
             <summary>
             根据id获取活动
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.UpdateProductAsync(Huatek.Torch.Promotions.Domain.PromotionAggregate.Promotion)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.UpdateProductAsync(Huatek.Torch.Promotions.Domain.PromotionAggregate.Promotion)">
             <summary>
             更新活动信息
             </summary>
             <param name="promotionToUpdate"></param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.CreateProductAsync(Huatek.Torch.Promotions.Domain.PromotionAggregate.Promotion)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.CreateProductAsync(Huatek.Torch.Promotions.Domain.PromotionAggregate.Promotion)">
             <summary>
             创建活动 此接口可以活动和活动商品一起插入到数据库
             </summary>
             <param name="promotion">活动信息</param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.PatchPromotionAsync(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Huatek.Torch.Promotions.Domain.PromotionAggregate.Promotion})">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.PatchPromotionAsync(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Huatek.Torch.Promotions.Domain.PromotionAggregate.Promotion})">
             <summary>
             修改删除状态 或 活动状态(已创建,已发布,已结束,已到期)
             </summary>
@@ -54,7 +54,7 @@
             <param name="patch"></param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.ItemsByPromotionIdAsync(System.Nullable{System.Int32},System.Int32,System.Int32)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.ItemsByPromotionIdAsync(System.Nullable{System.Int32},System.Int32,System.Int32)">
             <summary>
             根据活动id获取活动商品
             </summary>
@@ -63,21 +63,21 @@
             <param name="pageIndex"></param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.CreateProductPromotionsAsync(System.Collections.Generic.IEnumerable{Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionProduct})">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.CreateProductPromotionsAsync(System.Collections.Generic.IEnumerable{Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionProduct})">
             <summary>
             给活动添加商品
             </summary>
             <param name="promotionProducts">活动商品信息</param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.PromotionProductByIdAsync(System.Int32)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.PromotionProductByIdAsync(System.Int32)">
             <summary>
             根据id获取活动商品
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.PatchPromotionProductAsync(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionProduct})">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.PatchPromotionProductAsync(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionProduct})">
             <summary>
             修改活动商品的库存货活动价
             </summary>
@@ -88,18 +88,24 @@
             <param name="patch"></param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.DeletePromotionProductAsync(System.Int32)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.DeletePromotionProductAsync(System.Int32)">
             <summary>
             删除活动商品
             </summary>
             <param name="id">PromotionProductId</param>
             <returns></returns>
         </member>
-        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.PromotionByProductIdAsync(System.Int32)">
+        <member name="M:Huatek.Torch.Promotions.API.Controllers.PromotionAPIController.PromotionByProductIdAsync(System.Int32)">
             <summary>
             根据商品获取它所参加的活动
             </summary>
             <param name="productId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Huatek.Torch.Promotions.APP.Controllers.PromotionsController.Get">
+            <summary>
+            测试网站部署是否ok
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Huatek.Torch.Promotions.APP.Extensions.EnumExtensions.GetDescription(System.Enum,System.Boolean)">

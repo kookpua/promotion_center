@@ -11,55 +11,55 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Title)：
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Description)：
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PromotionTypeId)
+            @Html.DisplayNameFor(model => model.PromotionTypeId)：
         </dt>
         <dd class="col-sm-10">
             @Model.PromotionType.GetDescription()
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
+            @Html.DisplayNameFor(model => model.CreatedOnUtc)：
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CreatedOnUtc)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
+            @Html.DisplayNameFor(model => model.StartDate)：
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StartDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EndDate)
+            @Html.DisplayNameFor(model => model.EndDate)：
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EndDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PromotionStateId)
+            @Html.DisplayNameFor(model => model.PromotionStateId)：
         </dt>
         <dd class="col-sm-10">
             @Model.PromotionState.GetDescription()
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Deleted)
+            @Html.DisplayNameFor(model => model.Deleted)：
         </dt>
         <dd class="col-sm-10">
             @(Model.Deleted?"是":"否")
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PromotionProductTypeId)
+            @Html.DisplayNameFor(model => model.PromotionProductTypeId)：
         </dt>
         <dd class="col-sm-10">
             @Model.PromotionProductType.GetDescription()

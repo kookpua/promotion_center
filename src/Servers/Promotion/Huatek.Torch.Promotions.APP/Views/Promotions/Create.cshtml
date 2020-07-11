@@ -1,0 +1,75 @@
+﻿@using Huatek.Torch.Promotions.Domain.PromotionAggregate;
+@using Huatek.Torch.Promotions.APP.Extensions;
+@using Huatek.Torch.Promotions.Domain.Enum;
+@model Promotion;
+
+@{
+    ViewData["Title"] = "新增";
+    var PromotionTypeItems = ViewData["PromotionTypes"];
+    var PromotionStateItems = ViewData["PromotionStates"];
+    var PromotionProductTypeItems = ViewData["PromotionProductTypes"];
+
+}
+
+<h1>新增</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>：
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>：
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PromotionTypeId" class="control-label"></label>：<br />
+                <select asp-for="PromotionTypeId"
+                        asp-items="@(List<SelectListItem>)PromotionTypeItems"
+                        style="        width: 100%;">
+                    <option value="0">请选择</option>
+                </select>
+                <span asp-validation-for="PromotionTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>：
+                <input asp-for="StartDate" type="datetime-local" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>：
+                <input asp-for="EndDate" type="datetime-local" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PromotionStateId" class="control-label"></label>：<br />
+                <select asp-for="PromotionStateId"
+                        asp-items="@(List<SelectListItem>)PromotionStateItems"
+                        style="        width: 100%;">
+                    <option value="0">请选择</option>
+                </select>
+                <span asp-validation-for="PromotionStateId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PromotionProductTypeId" class="control-label"></label>：<br />
+                <select asp-for="PromotionProductTypeId"
+                        asp-items="@(List<SelectListItem>)PromotionProductTypeItems"
+                        style="        width: 100%;">
+                    <option value="0">请选择</option>
+                </select>
+                <span asp-validation-for="PromotionProductTypeId" class="text-danger"></span>
+            </div>
+            <input type="submit" value="确定" />
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">返回列表</a>
+</div>
