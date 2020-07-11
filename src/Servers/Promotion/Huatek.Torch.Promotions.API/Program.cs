@@ -1,5 +1,6 @@
 using System.IO;
 using Autofac.Extensions.DependencyInjection;
+using Huatek.Torch.Promotions.Domain;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -36,12 +37,14 @@ namespace Huatek.Torch.Promotions.API
             */
             #endregion
 
-            if (config["WhoSql"].Equals("MsSql"))
+            var whoSql = config[PromotionConsts.SQL_CONFIGURATION_KEY];
+            if (whoSql.StartsWith(PromotionConsts.SQL_CONFIGURATION_KEY_MSSQL))
             {
                 Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
-                .WriteTo.MSSqlServer(config["MsSql"],
-                    sinkOptions: new SinkOptions { TableName = "logs", AutoCreateSqlTable = true },
+                .WriteTo.MSSqlServer(config[whoSql],
+                    sinkOptions: new SinkOptions { TableName = PromotionConsts.DATABASE_LOG_TABLENAME,
+                        AutoCreateSqlTable = true },
                     restrictedToMinimumLevel: LogEventLevel.Information)
                .CreateLogger();
             }
@@ -49,7 +52,8 @@ namespace Huatek.Torch.Promotions.API
             {
                 Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
-                .WriteTo.MySQL(config["MySql"], "logs", restrictedToMinimumLevel: LogEventLevel.Information)
+                .WriteTo.MySQL(config[whoSql], PromotionConsts.DATABASE_LOG_TABLENAME,
+                    restrictedToMinimumLevel: LogEventLevel.Information)
                .CreateLogger();
             }
             #endregion

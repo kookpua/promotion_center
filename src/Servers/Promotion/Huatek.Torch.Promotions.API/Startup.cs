@@ -2,6 +2,7 @@ using System;
 using Autofac;
 using AutoMapper;
 using Huatek.Torch.Promotions.API.Extensions;
+using Huatek.Torch.Promotions.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -56,13 +57,14 @@ namespace Huatek.Torch.Promotions.API
             //services.AddEventBus(Configuration); 
             //services.AddServices();
 
-            if (Configuration.GetValue<string>("WhoSql").Equals("MsSql"))
+            var whoSql= Configuration.GetValue<string>(PromotionConsts.SQL_CONFIGURATION_KEY);
+            if (whoSql.StartsWith(PromotionConsts.SQL_CONFIGURATION_KEY_MSSQL))
             {
-                services.AddMSSqlDomainContext(Configuration.GetValue<string>("MsSql"));
+                services.AddMSSqlDomainContext(Configuration.GetValue<string>(whoSql));
             }
             else
             {
-                services.AddMySqlDomainContext(Configuration.GetValue<string>("MySql"));
+                services.AddMySqlDomainContext(Configuration.GetValue<string>(whoSql));
             }
 
 
