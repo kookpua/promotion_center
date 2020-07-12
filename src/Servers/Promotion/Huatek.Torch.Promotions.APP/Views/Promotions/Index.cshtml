@@ -38,34 +38,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].Title)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].PromotionTypeId)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].PromotionTypeId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].CreatedOnUtc)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].CreatedOnUtc)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].StartDate)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].EndDate)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].EndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].PromotionStateId)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].PromotionStateId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].Deleted)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].Deleted)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Promotions[0].PromotionProductTypeId)
+                @Html.DisplayNameFor(model => model.PromotionDtos[0].PromotionProductTypeId)
             </th>
             <th>操作</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Promotions)
+        @foreach (var item in Model.PromotionDtos)
         {
             <tr>
                 <td>
@@ -100,8 +100,7 @@
 
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">编辑</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">查看</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">删除</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">查看</a>
                 </td>
             </tr>
         }

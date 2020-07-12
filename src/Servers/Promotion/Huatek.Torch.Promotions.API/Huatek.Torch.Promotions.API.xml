@@ -137,42 +137,42 @@
             </summary>
             <param name="builder"></param>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.Title">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.Title">
             <summary>
             活动名称
             </summary>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.Description">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.Description">
             <summary>
             活动描述
             </summary>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.PromotionTypeId">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.PromotionTypeId">
             <summary>
             限时折扣1,新用户专享2
             </summary>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.CreatedCustomerId">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.CreatedCustomerId">
             <summary>
             创建人ID
             </summary>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.StartDate">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.StartDate">
             <summary>
             活动开启时间
             </summary>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.EndDate">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.EndDate">
             <summary>
             活动结束时间
             </summary>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.PromotionStateId">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.PromotionStateId">
             <summary>
             新创建为1
             </summary>
         </member>
-        <member name="P:Huatek.Torch.Promotions.Domain.PromotionAggregate.PromotionDto.PromotionProductTypeId">
+        <member name="P:Huatek.Torch.Promotions.Models.PromotionDto.PromotionProductTypeId">
             <summary>
             可设置多个商品1,只能设置一个商品2,全部商品3
             </summary>

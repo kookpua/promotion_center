@@ -81,11 +81,11 @@ namespace Huatek.Torch.Promotions.APP.Controllers
             {
                 promotions = promotions.Where(s => s.PromotionStateId == promotionStateId);
             }
-
+            var promotionList = await promotions.ToListAsync();
 
             var model = new PromotionOptionViewModel
             {
-                Promotions = await promotions.ToListAsync(),
+                PromotionDtos = _mapper.Map<IList<PromotionDto>>(promotionList).ToList(),
                 PromotionTypes = GeneratePromotionTypes(),
                 PromotionProductTypes = GeneratePromotionProductTypes(),
                 PromotionStates = GeneratePromotionStates(),
@@ -103,7 +103,7 @@ namespace Huatek.Torch.Promotions.APP.Controllers
         public IActionResult Create()
         {
             ViewData["PromotionTypes"] = GeneratePromotionTypes();
-            ViewData["PromotionStates"] = GeneratePromotionStates();
+            //ViewData["PromotionStates"] = GeneratePromotionStates();
             ViewData["PromotionProductTypes"] = GeneratePromotionProductTypes();
             return View();
         }
@@ -111,13 +111,14 @@ namespace Huatek.Torch.Promotions.APP.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Title,Description,PromotionTypeId,StartDate, EndDate,PromotionStateId,PromotionProductTypeId")]Promotion promotion)
+            [Bind("Title,Description,PromotionTypeId,StartDate, EndDate,PromotionProductTypeId")]PromotionDto promotionDto)
         {
+            promotionDto.PromotionState = PromotionState.Created;
             var flag = false;
             if (ModelState.IsValid)
             {
-                if (promotion.EndDate <= promotion.StartDate
-                    || promotion.EndDate<=DateTime.Now)
+                if (promotionDto.EndDate <= promotionDto.StartDate
+                    || promotionDto.EndDate<=DateTime.Now)
                 {
                     ModelState.AddModelError("EndDate","结束时间不能小于开始时间或当前系统时间");
                 }
@@ -127,17 +128,18 @@ namespace Huatek.Torch.Promotions.APP.Controllers
             }
             if (flag)
             {
+                var promotion = _mapper.Map<Promotion>(promotionDto);
                 _promotionContext.Add(promotion);
                 await _promotionContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewData["PromotionTypes"] = GeneratePromotionTypes();
-            ViewData["PromotionStates"] = GeneratePromotionStates();
+            //ViewData["PromotionStates"] = GeneratePromotionStates();
             ViewData["PromotionProductTypes"] = GeneratePromotionProductTypes();
-            return View(promotion);
+            return View(promotionDto);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -146,24 +148,70 @@ namespace Huatek.Torch.Promotions.APP.Controllers
 
             var promotion = await _promotionContext.Promotions
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (promotion == null)
+
+            var promotionDto = _mapper.Map<PromotionDto>(promotion);
+            if (promotionDto == null)
             {
                 return NotFound();
             }
 
-            return View(promotion);
+            ViewData["PromotionTypes"] = GeneratePromotionTypes();
+            ViewData["PromotionStates"] = GeneratePromotionStates();
+            ViewData["PromotionProductTypes"] = GeneratePromotionProductTypes();
+            return View(promotionDto);
         }
 
-
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Edit(
+            [Bind("Id,Title,Description,PromotionTypeId,PromotionStateId,Deleted,StartDate, EndDate,PromotionProductTypeId")] PromotionDto promotionDto)
         {
-            var promotion = await _promotionContext.Promotions.FindAsync(id);
-            _promotionContext.Promotions.Remove(promotion);
-            await _promotionContext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var flag = false;
+            if (ModelState.IsValid)
+            {
+                if (promotionDto.EndDate <= promotionDto.StartDate
+                    || promotionDto.EndDate <= DateTime.Now)
+                {
+                    ModelState.AddModelError("EndDate", "结束时间不能小于开始时间或当前系统时间");
+                }
+                else
+                {
+                    flag = true;
+                }
+            }
+            if (flag)
+            {
+                var promotion = _mapper.Map<Promotion>(promotionDto);
+                _promotionContext.Update(promotion);
+                await _promotionContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewData["PromotionTypes"] = GeneratePromotionTypes();
+            ViewData["PromotionStates"] = GeneratePromotionStates();
+            ViewData["PromotionProductTypes"] = GeneratePromotionProductTypes();
+            return View(promotionDto);
         }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var promotion = await _promotionContext.Promotions
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            var promotionDto = _mapper.Map<PromotionDto>(promotion);
+            if (promotionDto == null)
+            {
+                return NotFound();
+            }
+
+            return View(promotionDto);
+        }
+
+
         private static List<SelectListItem> GeneratePromotionTypes()
         {
             var selectListItems = new List<SelectListItem>();
@@ -207,22 +255,7 @@ namespace Huatek.Torch.Promotions.APP.Controllers
             }
             return selectListItems;
         }
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var promotion = await _promotionContext.Promotions
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (promotion == null)
-            {
-                return NotFound();
-            }
-
-            return View(promotion);
-        }
+       
 
         public IActionResult Privacy()
         {

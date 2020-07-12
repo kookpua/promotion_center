@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Huatek.Torch.Promotions.APP.Models;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
 
 namespace Huatek.Torch.Promotions.Profiles

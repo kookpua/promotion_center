@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Huatek.Torch.Promotions.Domain.PromotionAggregate
+namespace Huatek.Torch.Promotions.Models
 {
     public class PromotionDto 
     {

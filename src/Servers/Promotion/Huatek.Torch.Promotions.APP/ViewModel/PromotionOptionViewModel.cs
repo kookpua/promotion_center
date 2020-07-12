@@ -1,12 +1,7 @@
-﻿using Huatek.Torch.Promotions.API.ViewModel;
-using Huatek.Torch.Promotions.Domain.PromotionAggregate;
+﻿using Huatek.Torch.Promotions.APP.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Huatek.Torch.Promotions.APP.ViewModel
 {
@@ -17,8 +12,9 @@ namespace Huatek.Torch.Promotions.APP.ViewModel
             PromotionTypes = new List<SelectListItem>() ;
             PromotionProductTypes = new List<SelectListItem>();
             PromotionStates = new List<SelectListItem>();
+            PromotionDtos = new List<PromotionDto>();
         }
-        public List<Promotion> Promotions { get;  set; }
+        public List<PromotionDto> PromotionDtos { get;  set; }
         public List<SelectListItem> PromotionTypes { get; set; }
         public List<SelectListItem> PromotionProductTypes { get; set; }
         public List<SelectListItem> PromotionStates { get; set; }

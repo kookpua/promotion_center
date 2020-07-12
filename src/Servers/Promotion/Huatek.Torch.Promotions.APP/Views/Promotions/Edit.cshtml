@@ -4,7 +4,7 @@
 @model PromotionDto;
 
 @{
-    ViewData["Title"] = "新增";
+    ViewData["Title"] = "修改";
     var PromotionTypeItems = ViewData["PromotionTypes"];
     var PromotionStateItems = ViewData["PromotionStates"];
     var PromotionProductTypeItems = ViewData["PromotionProductTypes"];
@@ -15,7 +15,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-action="Edit" method="post">
+            <input asp-for="Id" type="hidden" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>：
@@ -47,15 +48,14 @@
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
 
-            @*<div class="form-group">
+            <div class="form-group">
                 <label asp-for="PromotionStateId" class="control-label"></label>：<br />
                 <select asp-for="PromotionStateId"
                         asp-items="@(List<SelectListItem>)PromotionStateItems"
                         style="        width: 100%;">
-                    <option value="0">请选择</option>
                 </select>
                 <span asp-validation-for="PromotionStateId" class="text-danger"></span>
-            </div>*@
+            </div>
 
             <div class="form-group">
                 <label asp-for="PromotionProductTypeId" class="control-label"></label>：<br />
@@ -65,6 +65,9 @@
                     <option value="0">请选择</option>
                 </select>
                 <span asp-validation-for="PromotionProductTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                删除：@Html.CheckBoxFor(m => m.Deleted)
             </div>
             <input type="submit" value="确定" />
         </form>

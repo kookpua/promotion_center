@@ -1,6 +1,6 @@
-﻿@using Huatek.Torch.Promotions.Domain.PromotionAggregate;
+﻿@using Huatek.Torch.Promotions.APP.Models;
 @using Huatek.Torch.Promotions.APP.Extensions;
-@model Promotion;
+@model PromotionDto;
 
 @{
     ViewData["Title"] = @Model.Title;
@@ -68,7 +68,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Delete" asp-route-id="@Model.Id">删除</a> |
     <a asp-action="Edit" asp-route-id="@Model.Id">编辑</a> |
     <a asp-action="Index">返回列表</a>
 </div>
