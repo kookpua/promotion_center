@@ -1,6 +1,6 @@
 using System;
 
-namespace Huatek.Torch.Promotions.APP.Models
+namespace Huatek.Torch.Promotions.APP.ViewModel
 {
     public class ErrorViewModel
     {

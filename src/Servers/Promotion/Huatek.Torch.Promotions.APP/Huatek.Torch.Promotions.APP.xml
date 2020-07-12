@@ -132,31 +132,6 @@
             <param name="connectionString"></param>
             <returns></returns>
         </member>
-        <member name="P:Huatek.Torch.Promotions.APP.Models.PromotionDto.Title">
-            <summary>
-            活动名称
-            </summary>
-        </member>
-        <member name="P:Huatek.Torch.Promotions.APP.Models.PromotionDto.Description">
-            <summary>
-            活动描述
-            </summary>
-        </member>
-        <member name="P:Huatek.Torch.Promotions.APP.Models.PromotionDto.PromotionTypeId">
-            <summary>
-            活动类型：限时折扣1,新用户专享2
-            </summary>
-        </member>
-        <member name="P:Huatek.Torch.Promotions.APP.Models.PromotionDto.PromotionStateId">
-            <summary>
-            活动状态：1,2,3,4
-            </summary>
-        </member>
-        <member name="P:Huatek.Torch.Promotions.APP.Models.PromotionDto.PromotionProductTypeId">
-            <summary>
-            活动商品类型：可设置多个商品1,只能设置一个商品2,全部商品3
-            </summary>
-        </member>
         <member name="M:Huatek.Torch.Promotions.APP.Program.CreateHostBuilder(System.String[])">
             <summary>
             UseSerilog()在宿主机启动的时候配置serilog,与微软ILogger进行整合
@@ -175,6 +150,31 @@
             Don't build the container; that gets done for you by the factory.
             </summary>
             <param name="builder"></param>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.APP.ViewModel.PromotionDto.Title">
+            <summary>
+            活动名称
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.APP.ViewModel.PromotionDto.Description">
+            <summary>
+            活动描述
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.APP.ViewModel.PromotionDto.PromotionTypeId">
+            <summary>
+            活动类型：限时折扣1,新用户专享2
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.APP.ViewModel.PromotionDto.PromotionStateId">
+            <summary>
+            活动状态：1,2,3,4
+            </summary>
+        </member>
+        <member name="P:Huatek.Torch.Promotions.APP.ViewModel.PromotionDto.PromotionProductTypeId">
+            <summary>
+            活动商品类型：可设置多个商品1,只能设置一个商品2,全部商品3
+            </summary>
         </member>
     </members>
 </doc>

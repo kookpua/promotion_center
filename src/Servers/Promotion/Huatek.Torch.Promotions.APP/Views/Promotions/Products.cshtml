@@ -1,0 +1,64 @@
+﻿@using Huatek.Torch.Promotions.APP.ViewModel;
+@model PromotionProductOptionViewModel;
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<h1>@Model.Title</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PromotionProducts[0].ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromotionProducts[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromotionProducts[0].StockQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromotionProducts[0].Deleted)
+            </th>
+
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PromotionProducts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockQuantity)
+                </td>
+                <td>
+                    @(item.Deleted?"是":"否")
+                </td>
+                <td>
+                    @if (!item.Deleted) { 
+                    <a asp-action="ProductEdit" asp-route-id="@item.Id">查看编辑</a>
+                    }else{
+                        @:已删除
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @if (@Model.IsAdd)
+    {
+        <a asp-action="ProductAdd" asp-route-id="@Model.PromotionId">新增商品</a> 
+        @:|
+     }
+    <a asp-action="Edit" asp-route-id="@Model.PromotionId">返回</a>
+</div>

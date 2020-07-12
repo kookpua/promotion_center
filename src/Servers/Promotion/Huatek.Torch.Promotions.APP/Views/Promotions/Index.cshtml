@@ -99,8 +99,9 @@
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">编辑</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">查看</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">查看编辑</a>
+                    @*  |*@
+                    @*<a asp-action="Details" asp-route-id="@item.Id">查看</a>*@
                 </td>
             </tr>
         }

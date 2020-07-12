@@ -1,17 +1,18 @@
-﻿@using Huatek.Torch.Promotions.APP.Models;
+﻿@using Huatek.Torch.Promotions.APP.ViewModel;
 @using Huatek.Torch.Promotions.APP.Extensions;
 @using Huatek.Torch.Promotions.Domain.Enum;
 @model PromotionDto;
 
 @{
-    ViewData["Title"] = "新增";
+    ViewData["Title"] = "新增活动";
     var PromotionTypeItems = ViewData["PromotionTypes"];
     var PromotionStateItems = ViewData["PromotionStates"];
     var PromotionProductTypeItems = ViewData["PromotionProductTypes"];
 
 }
 
-<h1>新增</h1>
+<h1>新增活动</h1>
+<hr /> <a asp-action="Index">返回列表</a>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -48,14 +49,14 @@
             </div>
 
             @*<div class="form-group">
-                <label asp-for="PromotionStateId" class="control-label"></label>：<br />
-                <select asp-for="PromotionStateId"
-                        asp-items="@(List<SelectListItem>)PromotionStateItems"
-                        style="        width: 100%;">
-                    <option value="0">请选择</option>
-                </select>
-                <span asp-validation-for="PromotionStateId" class="text-danger"></span>
-            </div>*@
+                    <label asp-for="PromotionStateId" class="control-label"></label>：<br />
+                    <select asp-for="PromotionStateId"
+                            asp-items="@(List<SelectListItem>)PromotionStateItems"
+                            style="        width: 100%;">
+                        <option value="0">请选择</option>
+                    </select>
+                    <span asp-validation-for="PromotionStateId" class="text-danger"></span>
+                </div>*@
 
             <div class="form-group">
                 <label asp-for="PromotionProductTypeId" class="control-label"></label>：<br />
@@ -69,7 +70,4 @@
             <input type="submit" value="确定" />
         </form>
     </div>
-</div>
-<div>
-    <a asp-action="Index">返回列表</a>
 </div>

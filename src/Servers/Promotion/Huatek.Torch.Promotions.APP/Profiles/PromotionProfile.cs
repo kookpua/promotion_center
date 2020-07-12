@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Huatek.Torch.Promotions.APP.Models;
+using Huatek.Torch.Promotions.APP.ViewModel;
 using Huatek.Torch.Promotions.Domain.PromotionAggregate;
 
 namespace Huatek.Torch.Promotions.Profiles
@@ -16,11 +16,9 @@ namespace Huatek.Torch.Promotions.Profiles
             //var promotiondto = _mapper.Map<IEnumerable<PromotionDto>>(itemsOnPage);
 
             CreateMap<Promotion, PromotionDto>();
-            CreateMap<PromotionProduct, PromotionProductDto>();
 
 
             CreateMap<PromotionDto, Promotion>();
-            CreateMap<PromotionProductDto, PromotionProduct>();
         }
     }
 }

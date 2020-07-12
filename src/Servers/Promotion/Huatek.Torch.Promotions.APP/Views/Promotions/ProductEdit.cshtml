@@ -1,0 +1,42 @@
+﻿@using Huatek.Torch.Promotions.APP.ViewModel;
+@using Huatek.Torch.Promotions.Domain.PromotionAggregate;
+@model PromotionProduct;
+
+@{
+    ViewData["Title"] = "修改活动商品";
+
+}
+
+<h1>修改活动商品</h1>
+<hr />
+<a asp-action="Products" asp-route-id="@Model.PromotionId">返回</a>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ProductEdit" method="post">
+            <input asp-for="PromotionId" type="hidden" />
+            <input asp-for="Id" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="ProductId" type="hidden" />
+                <label asp-for="ProductId" class="control-label"></label>：
+                @Html.DisplayFor(model => model.ProductId)
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>：
+                <input asp-for="Price" type="number" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StockQuantity" class="control-label"></label>：
+                <input asp-for="StockQuantity" type="number" class="form-control" />
+                <span asp-validation-for="StockQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                删除：@Html.CheckBoxFor(m => m.Deleted)
+            </div>
+            <input type="submit" value="确定" />
+        </form>
+    </div>
+</div>

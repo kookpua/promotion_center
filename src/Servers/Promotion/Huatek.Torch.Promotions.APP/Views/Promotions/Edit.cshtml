@@ -1,4 +1,4 @@
-﻿@using Huatek.Torch.Promotions.APP.Models;
+﻿@using Huatek.Torch.Promotions.APP.ViewModel;
 @using Huatek.Torch.Promotions.APP.Extensions;
 @using Huatek.Torch.Promotions.Domain.Enum;
 @model PromotionDto;
@@ -11,7 +11,16 @@
 
 }
 
-<h1>新增</h1>
+<h1>修改</h1>
+<hr />
+@if (Model.PromotionProductType != PromotionProductType.All)
+{
+    <a asp-action="Products" asp-route-id="@Model.Id">设置商品</a> 
+    @:|
+}else{
+    @:此活动类型为所有商品参与活动
+}
+<a asp-action="Index">返回列表</a>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -29,8 +38,9 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <input asp-for="PromotionTypeId" type="hidden" />
                 <label asp-for="PromotionTypeId" class="control-label"></label>：<br />
-                <select asp-for="PromotionTypeId"
+                <select disabled asp-for="PromotionTypeId"
                         asp-items="@(List<SelectListItem>)PromotionTypeItems"
                         style="        width: 100%;">
                     <option value="0">请选择</option>
@@ -58,8 +68,9 @@
             </div>
 
             <div class="form-group">
+                <input asp-for="PromotionProductTypeId" type="hidden" />
                 <label asp-for="PromotionProductTypeId" class="control-label"></label>：<br />
-                <select asp-for="PromotionProductTypeId"
+                <select disabled asp-for="PromotionProductTypeId"
                         asp-items="@(List<SelectListItem>)PromotionProductTypeItems"
                         style="        width: 100%;">
                     <option value="0">请选择</option>
@@ -72,7 +83,4 @@
             <input type="submit" value="确定" />
         </form>
     </div>
-</div>
-<div>
-    <a asp-action="Index">返回列表</a>
 </div>

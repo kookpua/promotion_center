@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Huatek.Torch.Promotions.APP.Models
+namespace Huatek.Torch.Promotions.APP.ViewModel
 {
     public class PromotionDto 
     {

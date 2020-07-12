@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Huatek.Torch.Promotions.API.ViewModel;
 using Huatek.Torch.Promotions.APP.Extensions;
-using Huatek.Torch.Promotions.APP.Models;
 using Huatek.Torch.Promotions.APP.Utils;
 using Huatek.Torch.Promotions.APP.ViewModel;
 using Huatek.Torch.Promotions.Domain.Enum;
@@ -56,7 +55,7 @@ namespace Huatek.Torch.Promotions.APP.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new List<string>() { "ok"} ;
+            return new List<string>() { "ok" };
         }
         public async Task<IActionResult> Index(int promotionTypeId,
             int promotionProductTypeId, int promotionStateId,
@@ -95,7 +94,7 @@ namespace Huatek.Torch.Promotions.APP.Controllers
                 PromotionStateId = promotionStateId,
             };
 
-            
+
             return View(model);
             //return View(await promotions.ToListAsync());
         }
@@ -111,25 +110,26 @@ namespace Huatek.Torch.Promotions.APP.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Title,Description,PromotionTypeId,StartDate, EndDate,PromotionProductTypeId")]PromotionDto promotionDto)
+            [Bind("Title,Description,PromotionTypeId,StartDate, EndDate,PromotionProductTypeId")] PromotionDto promotionDto)
         {
             promotionDto.PromotionState = PromotionState.Created;
             var flag = false;
             if (ModelState.IsValid)
             {
                 if (promotionDto.EndDate <= promotionDto.StartDate
-                    || promotionDto.EndDate<=DateTime.Now)
+                    || promotionDto.EndDate <= DateTime.Now)
                 {
-                    ModelState.AddModelError("EndDate","结束时间不能小于开始时间或当前系统时间");
+                    ModelState.AddModelError("EndDate", "结束时间不能小于开始时间或当前系统时间");
                 }
-                else { 
+                else
+                {
                     flag = true;
                 }
             }
             if (flag)
             {
                 var promotion = _mapper.Map<Promotion>(promotionDto);
-                _promotionContext.Add(promotion);
+                _promotionContext.Promotions.Add(promotion);
                 await _promotionContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -182,7 +182,7 @@ namespace Huatek.Torch.Promotions.APP.Controllers
             if (flag)
             {
                 var promotion = _mapper.Map<Promotion>(promotionDto);
-                _promotionContext.Update(promotion);
+                _promotionContext.Promotions.Update(promotion);
                 await _promotionContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -212,6 +212,150 @@ namespace Huatek.Torch.Promotions.APP.Controllers
         }
 
 
+
+        public async Task<IActionResult> ProductAdd(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            var promotion = await _promotionContext.Promotions
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (promotion == null)
+            {
+                return NotFound();
+            }
+            var promotionProduct = new PromotionProduct()
+            {
+                PromotionId = promotion.Id
+            };
+
+            return View(promotionProduct);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductAdd(PromotionProduct promotionProduct)
+        {
+            promotionProduct.Id = 0;
+            if (promotionProduct.PromotionId == 0)
+            {
+                return NotFound();
+            }
+            if (promotionProduct.ProductId <= 0)
+            {
+                ModelState.AddModelError("ProductId", "商品ID必须大于0");
+            }
+            if (!promotionProduct.StockQuantity.HasValue && !promotionProduct.Price.HasValue)
+            {
+                ModelState.AddModelError("StockQuantity", "活动库存和活动价必填一项");
+                ModelState.AddModelError("Price", "活动库存和活动价必填一项");
+            }
+            if (ModelState.IsValid)
+            {
+                var promotion = await _promotionContext.Promotions
+               .FirstOrDefaultAsync(m => m.Id == promotionProduct.PromotionId);
+
+                if (promotion == null)
+                {
+                    return NotFound();
+                }
+                var item = await _promotionContext.PromotionProducts
+                .FirstOrDefaultAsync(m => m.PromotionId == promotionProduct.PromotionId
+                && m.ProductId== promotionProduct.ProductId && m.Deleted==false);
+                if (item == null)
+                {
+                    _promotionContext.PromotionProducts.Add(promotionProduct);
+                    await _promotionContext.SaveChangesAsync();
+                    return RedirectToAction("Products", new
+                    {
+                        id = promotionProduct.PromotionId
+                    });
+                }
+                else
+                {
+                    ModelState.AddModelError("ProductId", "此活动已设置此商品");
+                }
+            }
+
+            return View(promotionProduct);
+        }
+
+        public async Task<IActionResult> Products(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var promotion = await _promotionContext.Promotions
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (promotion == null)
+            {
+                return NotFound();
+            }
+            var promotionProducts = await _promotionContext.PromotionProducts
+                           .Where(m => m.PromotionId == id).ToListAsync();
+
+            var isAdd = true;
+            if(promotion.PromotionProductType== PromotionProductType.OnlyOne
+                && promotionProducts.Any(pp=>!pp.Deleted))
+            {
+                isAdd = false;
+            }
+            var model = new PromotionProductOptionViewModel()
+            {
+                PromotionProducts = promotionProducts,
+                Title = promotion.Title,
+                PromotionId = promotion.Id,
+                IsAdd = isAdd
+            };
+
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> ProductEdit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var item = await _promotionContext.PromotionProducts
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductEdit(PromotionProduct promotionProduct)
+        {
+            if (!promotionProduct.StockQuantity.HasValue && !promotionProduct.Price.HasValue)
+            {
+                ModelState.AddModelError("StockQuantity", "活动库存和活动价必填一项");
+                ModelState.AddModelError("Price", "活动库存和活动价必填一项");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _promotionContext.PromotionProducts.Update(promotionProduct);
+                await _promotionContext.SaveChangesAsync();
+                return RedirectToAction("Products", new
+                {
+                    id = promotionProduct.PromotionId
+                });
+            }
+            return View(promotionProduct);
+        }
+
         private static List<SelectListItem> GeneratePromotionTypes()
         {
             var selectListItems = new List<SelectListItem>();
@@ -229,7 +373,7 @@ namespace Huatek.Torch.Promotions.APP.Controllers
 
         private static List<SelectListItem> GeneratePromotionStates()
         {
-            var selectListItems = new List<SelectListItem>(); 
+            var selectListItems = new List<SelectListItem>();
             var promotionStates = EnumUtil.GetValues<PromotionState>();
             foreach (var item in promotionStates)
             {
@@ -255,7 +399,7 @@ namespace Huatek.Torch.Promotions.APP.Controllers
             }
             return selectListItems;
         }
-       
+
 
         public IActionResult Privacy()
         {
