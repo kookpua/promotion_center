@@ -54,7 +54,8 @@ namespace Huatek.Torch.Promotions.APP
             services.AddControllersWithViews(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;
-            }).AddNewtonsoftJson(); //支持构造函数序列化
+            }).AddRazorRuntimeCompilation()
+                .AddNewtonsoftJson(); //支持构造函数序列化
 
 
             services.AddApplicationInsightsTelemetry();
