@@ -56,7 +56,7 @@ namespace Huatek.Torch.Promotions.API
             services.AddSwagger();
             //services.AddEventBus(Configuration); 
             //services.AddServices();
-            //services.AddNacosAspNetCore(Configuration);
+            services.AddNacosAspNetCore(Configuration);
 
             var whoSql= Configuration.GetValue<string>(PromotionConsts.SQL_CONFIGURATION_KEY);
             if (whoSql.StartsWith(PromotionConsts.SQL_CONFIGURATION_KEY_MSSQL))
