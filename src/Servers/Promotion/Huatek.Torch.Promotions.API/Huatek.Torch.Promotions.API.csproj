@@ -40,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\nacos-sdk-csharp2\src\Nacos.AspNetCore\Nacos.AspNetCore.csproj" />
     <ProjectReference Include="..\Huatek.Torch.Promotions.Domin\Huatek.Torch.Promotions.Domain.csproj" />
     <ProjectReference Include="..\Huatek.Torch.Promotions.Infrastructure\Huatek.Torch.Promotions.Infrastructure.csproj" />
     <ProjectReference Include="..\Huatek.Torch.Promotions.Service\Huatek.Torch.Promotions.Service.csproj" />
