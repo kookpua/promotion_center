@@ -1,9 +1,9 @@
 
 # <center>促销服务</center>
 
-##Document
+## Document
 
-[Document](https://kookpua.github.io/promotion_center/)
+[Document](https://kookpua.github.io/promotion_center/){:target="_blank"}
 
 
 ## 促销服务
