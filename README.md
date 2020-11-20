@@ -73,7 +73,7 @@ Id | int|
 Type | nvarchar(100)|
 
 eg:
-id|type
+id|type|
 ---|---|
 1|限时折扣
 2|新用户专享
@@ -89,7 +89,7 @@ Id | int|
 State | nvarchar(20)|
 
 eg:
-id|state
+id|state|
 ---|---|
 1|已创建
 2|已发布
@@ -106,7 +106,7 @@ Id | int|
 Type | nvarchar(100)|
 
 eg:
-id|type
+id|type|
 ---|---|
 0|None无
 1|Discount折抵--DiscountAmount值为10代表1折
@@ -121,7 +121,7 @@ Id | int|
 Type | nvarchar(100)|
 
 eg:
-id|type
+id|type|
 ---|---|
 1|可以选多个商品
 2|可以选一个商品
