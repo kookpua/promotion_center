@@ -3,7 +3,8 @@
 
 ## Document
 
-[Document](https://kookpua.github.io/promotion_center/){:target="_blank"}
+<a href="https://kookpua.github.io/promotion_center/" target="_blank">Document</a>
+
 
 
 ## 促销服务
