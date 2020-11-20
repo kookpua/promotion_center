@@ -53,6 +53,7 @@ Deleted | bit NOT NULL|活动是否删除|
 
 
 PromotionProduct(活动商品)
+
 字段 | 类型 | 说明|
 --- | --- | --- |
 Id | int|自增id|
@@ -67,12 +68,14 @@ Deleted | bit NOT NULL|活动商品是否删除|
 
 
 PromotionType(活动类型-枚举)
+
 字段 | 类型 | 
 --- | --- | 
 Id | int|
 Type | nvarchar(100)|
 
 eg:
+
 id|type|
 ---|---|
 1|限时折扣|
@@ -83,12 +86,14 @@ id|type|
 6|满件折|
 
 PromotionState(活动状态-枚举)
+
 字段 | 类型 | 
 --- | --- | 
 Id | int|
 State | nvarchar(20)|
 
 eg:
+
 id|state|
 ---|---|
 1|已创建|
@@ -106,6 +111,7 @@ Id | int|
 Type | nvarchar(100)|
 
 eg:
+
 id|type|
 ---|---|
 0|None无|
@@ -121,6 +127,7 @@ Id | int|
 Type | nvarchar(100)|
 
 eg:
+
 id|type|
 ---|---|
 1|可以选多个商品|
