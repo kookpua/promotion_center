@@ -1,5 +1,11 @@
 
 # <center>促销服务</center>
+
+##Document
+
+[Document](https://kookpua.github.io/promotion_center/)
+
+
 ## 促销服务
 促销服务维护着所有促销信息,核心业务为:
 - 促销基础信息的维护
