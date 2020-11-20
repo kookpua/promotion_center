@@ -3,9 +3,7 @@
 
 ## Document
 
-<a href="https://kookpua.github.io/promotion_center/" target="_blank">Document</a>
-
-
+[Document](https://kookpua.github.io/promotion_center/) 
 
 ## 促销服务
 促销服务维护着所有促销信息,核心业务为:
@@ -159,3 +157,12 @@ id|type|
 
 
 
+<script>
+
+var links = document.querySelectorAll( '.post-content a' );  
+for (var i = 0, length = links.length; i < length; i++) {  
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+}
+</script>
