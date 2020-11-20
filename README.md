@@ -158,6 +158,7 @@ id|type|
 
 
 <script>
+//貌似github不支持让md中新标签跳转
 windows.onload=function(){
     var links = document.querySelectorAll( '.post-content a' );  
     for (var i = 0, length = links.length; i < length; i++) {  
