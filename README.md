@@ -23,11 +23,6 @@
 - ☑ Serilog
 - ☑ Swagger & Swashbuckle(Swagger API文档)
 - ☑ Rest架构风格API
-- □ Docker(Linux X86&**ARM**)
-- □ Docker Kubernetes（可选）
-- □ 数据库(**主从**)
-- □ Dapper（可选）
-- □ Redis（可选）
 
 ## 实体建模&数据库结构
 
