@@ -35,6 +35,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotions.Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huatek.Torch.Promotions.APP", "Servers\Promotion\Huatek.Torch.Promotions.APP\Huatek.Torch.Promotions.APP.csproj", "{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nacos", "nacos", "{02203F01-2FEC-4D3C-A24C-003538D9101A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nacos", "..\..\nacos-sdk-csharp2\src\Nacos\Nacos.csproj", "{3483D178-0600-48B1-9386-0E3764A11A19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nacos.AspNetCore", "..\..\nacos-sdk-csharp2\src\Nacos.AspNetCore\Nacos.AspNetCore.csproj", "{CA3AFDE4-8A59-4C9B-AB7B-7EE5887A12EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nacos.Microsoft.Extensions.Configuration", "..\..\nacos-sdk-csharp2\src\Nacos.Microsoft.Extensions.Configuration\Nacos.Microsoft.Extensions.Configuration.csproj", "{765C33BD-3A50-4C05-BAF7-4C5F5707A3DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +89,18 @@ Global
 		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3483D178-0600-48B1-9386-0E3764A11A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3483D178-0600-48B1-9386-0E3764A11A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3483D178-0600-48B1-9386-0E3764A11A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3483D178-0600-48B1-9386-0E3764A11A19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3AFDE4-8A59-4C9B-AB7B-7EE5887A12EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3AFDE4-8A59-4C9B-AB7B-7EE5887A12EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3AFDE4-8A59-4C9B-AB7B-7EE5887A12EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3AFDE4-8A59-4C9B-AB7B-7EE5887A12EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765C33BD-3A50-4C05-BAF7-4C5F5707A3DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765C33BD-3A50-4C05-BAF7-4C5F5707A3DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765C33BD-3A50-4C05-BAF7-4C5F5707A3DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765C33BD-3A50-4C05-BAF7-4C5F5707A3DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +119,10 @@ Global
 		{E5E428BD-1BF5-4DEA-9896-AE4D49CB346F} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
 		{44EDB5CB-5201-48C9-BC6D-DB34E216C2C6} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
 		{0D0A2C71-FAD4-4F06-9FED-61CAF8899250} = {84BEC012-469B-4458-9B8B-DDD9DF5E0E7A}
+		{02203F01-2FEC-4D3C-A24C-003538D9101A} = {D7A2E236-E31F-4705-8C24-825DE9DFC15F}
+		{3483D178-0600-48B1-9386-0E3764A11A19} = {02203F01-2FEC-4D3C-A24C-003538D9101A}
+		{CA3AFDE4-8A59-4C9B-AB7B-7EE5887A12EF} = {02203F01-2FEC-4D3C-A24C-003538D9101A}
+		{765C33BD-3A50-4C05-BAF7-4C5F5707A3DD} = {02203F01-2FEC-4D3C-A24C-003538D9101A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8C056DA-3EE2-421F-AFEB-244F4C5D817C}

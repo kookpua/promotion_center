@@ -1,10 +1,5 @@
 
 # <center>促销服务</center>
-
-## Document
-
-[Document](https://kookpua.github.io/promotion_center/) 
-
 ## 促销服务
 促销服务维护着所有促销信息,核心业务为:
 - 促销基础信息的维护
@@ -157,14 +152,3 @@ id|type|
 
 
 
-<script>
-//貌似github不支持让md中新标签跳转
-windows.onload=function(){
-    var links = document.querySelectorAll( '.post-content a' );  
-    for (var i = 0, length = links.length; i < length; i++) {  
-        if (links[i].hostname != window.location.hostname) {
-            links[i].target = '_blank';
-        }
-    }
-}
-</script>
